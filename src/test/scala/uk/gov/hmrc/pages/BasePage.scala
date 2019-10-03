@@ -1,4 +1,4 @@
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.pages
 
 import org.scalatest.Matchers
 

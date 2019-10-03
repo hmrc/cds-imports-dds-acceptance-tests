@@ -1,4 +1,4 @@
-package uk.gov.hmrc.test.ui.cucumber.runner
+package uk.gov.hmrc.cucumber.runner
 
 import cucumber.api.CucumberOptions
 import cucumber.api.junit.Cucumber

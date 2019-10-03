@@ -1,4 +1,4 @@
-package uk.gov.hmrc.test.ui
+package uk.gov.hmrc
 
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalatest.WordSpec

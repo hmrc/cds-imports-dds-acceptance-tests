@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.test.ui.cucumber.stepdefs
+package uk.gov.hmrc.cucumber.runner
 
-import org.scalatest.Matchers
-import org.scalatest.concurrent.Eventually
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
-import cucumber.api.scala.{EN, ScalaDsl}
-import uk.gov.hmrc.webdriver.SingletonDriver
+import cucumber.api.CucumberOptions
+import cucumber.api.junit.Cucumber
+import org.junit.runner.RunWith
 
-import scala.util.Try
-
-trait BaseStepDef extends ScalaDsl with EN with BrowserDriver with Eventually with Matchers{
-
-  sys.addShutdownHook {
-    Try(SingletonDriver.closeInstance)
-  }
+@RunWith(classOf[Cucumber])
+@CucumberOptions(
+  features = Array("src/test/resources/features"),
+  glue = Array("uk.gov.hmrc.cucumber.stepdefs"),
+  plugin = Array ("pretty", "html:target/cucumber", "json:target/cucumber.json"),
+  tags = Array("@Example")
+)
+class RunAcceptance {
 }
