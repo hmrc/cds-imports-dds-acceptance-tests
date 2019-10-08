@@ -39,6 +39,21 @@ object TestConfiguration {
           baseUrl = "http://localhost",
           AUTH_LOGIN_STUB = "http://localhost:9949/auth-login-stub/gg-sign-in"
         )
+      case Environment.Dev =>
+        new TestConfiguration(
+          baseUrl = "https://www.development.tax.service.gov.uk",
+          AUTH_LOGIN_STUB = "https://www.development.tax.service.gov.uk/auth-login-stub/gg-sign-in"
+        )
+      case Environment.Qa =>
+        new TestConfiguration(
+          baseUrl = "https://www.qa.tax.service.gov.uk",
+          AUTH_LOGIN_STUB = "https://www.qa.tax.service.gov.uk/auth-login-stub/gg-sign-in"
+        )
+      case Environment.Staging =>
+        new TestConfiguration(
+          baseUrl = "https://www.staging.tax.service.gov.uk",
+          AUTH_LOGIN_STUB = "https://www.staging.tax.service.gov.uk/auth-login-stub/gg-sign-in"
+        )
       case _ => throw new IllegalArgumentException(s"Unknown environment '$environment'")
     }
   }
