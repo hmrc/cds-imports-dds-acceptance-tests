@@ -1,4 +1,4 @@
-@acceptance @smoke
+@acceptance @smoke @zap
   Feature: Import sign in feature
 
     Scenario: Sign in as a registered user

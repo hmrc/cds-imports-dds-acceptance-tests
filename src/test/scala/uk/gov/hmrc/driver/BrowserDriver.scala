@@ -56,6 +56,8 @@ object BrowserDriver {
       case "chrome" => createChromeDriver()
       case "remote-chrome" => createRemoteChrome   //Use this to run tests in Jenkins
       case "remote-firefox" => createRemoteFirefox //Use this to run tests in Jenkins
+      case "zap-local-chrome" => createZapLocalChrome
+      case "zap-remote-chrome" => createZapRemoteChrome
       case _ => throw new IllegalArgumentException(s"browser type $browserProperty is not recognised ")
     }
   }
@@ -94,6 +96,21 @@ object BrowserDriver {
     options.merge(capabilities)
     new ChromeDriver(options)
   }
+
+  private def createZapRemoteChrome: WebDriver = {
+
+    new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions)
+  }
+
+  private def createZapLocalChrome: WebDriver = {
+
+    new ChromeDriver(DesiredCapabilities.chrome().merge(chromeOptions))
+  }
+
+  private def chromeOptions: ChromeOptions = new ChromeOptions().
+    addArguments("test-type").
+    addArguments("--proxy-server=http://localhost:11000").
+    addArguments("--start-maximized")
 
   sys.addShutdownHook(driverInstance.quit())
 }

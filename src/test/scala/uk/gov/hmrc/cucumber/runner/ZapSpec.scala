@@ -1,4 +1,4 @@
-package uk.gov.hmrc
+package uk.gov.hmrc.cucumber.runner
 
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalatest.WordSpec
@@ -16,3 +16,5 @@ class ZapSpec extends WordSpec with ZapTest {
     }
   }
 }
+
+
