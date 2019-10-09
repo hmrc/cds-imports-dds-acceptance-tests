@@ -28,3 +28,7 @@ lib_managed
 src_managed/
 project/project
 project/target
+
+# NPM cache (used for pa11y)
+node_modules
+package-lock.json
