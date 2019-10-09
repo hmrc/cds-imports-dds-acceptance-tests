@@ -6,7 +6,7 @@ import uk.gov.hmrc.pages.{AuthStubPage, BasePage}
 class SignInSteps extends BasePage {
 
   Given("""^I am signed in as a (.*)$""") { (user: String) =>
-    val redirectUrl = s"$baseUrl/cds-imports-dds-frontend"
+    val redirectUrl = s"$baseUrl/customs/imports"
 
     AuthStubPage.goToPage()
     AuthStubPage.logIn(user, redirectUrl: String)
