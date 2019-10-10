@@ -20,10 +20,10 @@ import java.util.concurrent.TimeUnit
 
 import net.lightbody.bmp.proxy.auth.AuthType
 import net.lightbody.bmp.{BrowserMobProxy, BrowserMobProxyServer}
-import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.{ChromeDriver, ChromeDriverService, ChromeOptions}
 import org.openqa.selenium.firefox.FirefoxOptions
 import org.openqa.selenium.remote.{BrowserType, CapabilityType, DesiredCapabilities, RemoteWebDriver}
+import org.openqa.selenium.{MutableCapabilities, Proxy, WebDriver}
 
 
 object BrowserDriver {
@@ -107,10 +107,20 @@ object BrowserDriver {
     new ChromeDriver(DesiredCapabilities.chrome().merge(chromeOptions))
   }
 
-  private def chromeOptions: ChromeOptions = new ChromeOptions().
-    addArguments("test-type").
-    addArguments("--proxy-server=http://localhost:11000").
-    addArguments("--start-maximized")
+  private def chromeOptions: ChromeOptions = {
+    val userOptions = new ChromeOptions()
+    zapConfiguration(userOptions)
+    userOptions
+  }
+
+  private def zapConfiguration(options: MutableCapabilities) = {
+    val noProxy: String = if (options.getBrowserName.equalsIgnoreCase("chrome")) "<-loopback>" else ""
+    sys.props.get("zap.proxy") match {
+      case Some("true") =>
+        options.setCapability(CapabilityType.PROXY, new Proxy().setHttpProxy("localhost:11000").setNoProxy(noProxy))
+      case _ => ()
+    }
+  }
 
   sys.addShutdownHook(driverInstance.quit())
 }
