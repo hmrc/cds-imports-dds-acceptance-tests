@@ -11,9 +11,8 @@ trait AuthStubPage extends BasePage {
 
   override lazy val url = s"${TestConfiguration.settings.AUTH_LOGIN_STUB}"
 
-  def logIn(user: String, redirectUrl: String) ={
+  def logIn(user: String, redirectUrl: String) = {
     val pid = new scala.util.Random().nextInt(9999999).toString
-
     val eoriNumber = readEoriFromPropsFile(user)
 
     textField("authorityId").value = pid

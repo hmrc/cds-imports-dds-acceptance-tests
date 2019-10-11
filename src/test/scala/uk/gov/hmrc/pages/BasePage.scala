@@ -13,7 +13,7 @@ trait BasePage extends Matchers with WebBrowser with StartUpTearDown with ScalaD
   private lazy val envBaseUrl : String = TestConfiguration.settings.baseUrl
   private val port = 9760
 
-  def baseUrl= if (envBaseUrl.contains("localhost")) s"$envBaseUrl:$port" else envBaseUrl
+  def baseUrl: String = if (envBaseUrl.contains("localhost")) s"$envBaseUrl:$port" else envBaseUrl
 
   def goToPage(): Unit = {
     go to url
