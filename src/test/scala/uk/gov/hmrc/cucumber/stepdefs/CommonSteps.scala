@@ -19,9 +19,15 @@ class CommonSteps extends BasePage with AppendedClues {
   }
 
   private def toggleFeatureSwitch(feature: String, featureState: String) = {
-    val result = FeatureSwitchPage(
-      feature.toLowerCase().replace(" ", "-"),
-      featureState.dropRight(1)).featureToggle
+    val featureName = feature.toLowerCase().replace(" ", "-")
+    val featureAction: String = featureState match {
+      case "suspended" => "suspend"
+      case "enabled" => "enable"
+      case "disabled" => "disable"
+      case _ => featureState
+    }
+
+    val result = FeatureSwitchPage(featureName, featureAction).featureToggle
     result should be(true) withClue ", Feature could not be toggled"
   }
 
