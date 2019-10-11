@@ -42,8 +42,6 @@ async function RunPa11y() {
 
         // Need to login via the auth login stub before we can test...
         let loginAndNavigateToPage = [
-            // TODO enable feature switches once they're supported by the frontend
-            // 'navigate to ' + featureSwitchUrlFor(targetURL),
             'navigate to http://localhost:9949/auth-login-stub/gg-sign-in/',
             'set field ' + authorityId + ' to ' + randomId(),
             'set field ' + redirectionUrl + ' to ' + targetURL,
@@ -57,7 +55,7 @@ async function RunPa11y() {
             'screen capture ' + screenshotPathFor(targetURL)
         ];
 
-        return pa11y(targetURL, {
+        return pa11y(featureSwitchUrlFor(targetURL), {
 
             browser: browser,
 
