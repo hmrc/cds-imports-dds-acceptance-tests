@@ -1,4 +1,4 @@
-@acceptance @smoke
+@acceptance
   Feature: Hello World
 
     Scenario: Hello World page is visible when feature is enabled
