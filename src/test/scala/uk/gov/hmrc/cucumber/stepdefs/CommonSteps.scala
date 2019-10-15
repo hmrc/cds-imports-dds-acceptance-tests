@@ -3,7 +3,7 @@ package uk.gov.hmrc.cucumber.stepdefs
 import cucumber.api.PendingException
 import org.scalatest.AppendedClues
 import uk.gov.hmrc.conf.TestConfiguration
-import uk.gov.hmrc.pages.{BasePage, FeatureSwitchPage, HelloWorldPage}
+import uk.gov.hmrc.pages.{BasePage, FeatureSwitchPage, HelloWorldPage, SubmitDeclarationPage}
 
 class CommonSteps extends BasePage with AppendedClues {
 
@@ -34,6 +34,7 @@ class CommonSteps extends BasePage with AppendedClues {
   When("""^I navigate to the (.*) page$""") { page: String =>
     page match {
       case "Hello World" => HelloWorldPage.goToPage()
+      case "Submit Declaration" => SubmitDeclarationPage.goToPage()
     }
   }
 
