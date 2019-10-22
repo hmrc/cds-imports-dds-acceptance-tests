@@ -3,4 +3,4 @@
 
     Scenario: Sign in as a registered user
       Given I am signed in as a registered user
-      Then I should land on a temporary page
+      Then I should see the heading "Hello from cds-imports-dds-frontend !"
