@@ -36,5 +36,7 @@ trait BasePage extends Matchers with WebBrowser with StartUpTearDown with ScalaD
       case _: NoSuchElementException => fail(s"$selector is not found in page")
     }
   }
+
+  def pageTitle = webDriver.getTitle
 }
 

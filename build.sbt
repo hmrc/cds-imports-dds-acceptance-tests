@@ -12,7 +12,11 @@ resolvers += "hmrc-releases" at "https://artefacts.tax.service.gov.uk/artifactor
 resolvers += Resolver.bintrayRepo("hmrc", "releases")
 
 libraryDependencies ++= Seq(
-  "uk.gov.hmrc"                %% "webdriver-factory"       % "0.7.0"   % "test",
+  "com.typesafe.play"          %% "play-ahc-ws-standalone"  % "2.0.3",
+  "com.typesafe.play"          %% "play-ws-standalone-json" % "2.0.3",
+  "com.typesafe.play"          %% "play-json"               % "2.3.10",
+  "org.mongodb.scala"          %% "mongo-scala-driver"      % "2.4.0",
+  "uk.gov.hmrc"                %% "webdriver-factory"       % "0.7.0" % "test",
   "org.scalatest"              %% "scalatest"               % "3.0.7" % "test",
   "info.cukes"                 %% "cucumber-scala"          % "1.2.5" % "test",
   "info.cukes"                 %  "cucumber-junit"          % "1.2.5" % "test",

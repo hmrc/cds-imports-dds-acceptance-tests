@@ -2,7 +2,7 @@ package uk.gov.hmrc.cucumber.stepdefs
 
 import cucumber.api.DataTable
 import org.scalatest.AppendedClues
-import uk.gov.hmrc.pages.{CustomsImportsWebPage, DeclarationConfirmationPage, SubmitDeclarationPage}
+import uk.gov.hmrc.pages.{CustomsImportsWebPage, DeclarationConfirmationPage, NotificationsPage, SubmitDeclarationPage}
 
 import scala.collection.JavaConverters._
 
@@ -42,5 +42,9 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
       case "valid data" => DeclarationConfirmationPage.ResponseRows.get("ConversationId").get.length should not be(0)
       case "invalid data" => DeclarationConfirmationPage.ResponseRows.get("ConversationId").get.length should be(0)
     }
+  }
+
+  And("""^the declaration status should be (.*)$""") { (statusText: String) =>
+    NotificationsPage.status should be(statusText)
   }
 }
