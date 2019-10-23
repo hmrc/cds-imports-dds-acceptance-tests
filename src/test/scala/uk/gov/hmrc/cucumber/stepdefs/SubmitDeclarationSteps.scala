@@ -39,12 +39,18 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     val expectedData = dataTable.asMaps(classOf[String], classOf[String]).get(0).asScala.toMap.get("Status")
     DeclarationConfirmationPage.ResponseRows.get("Status") should be(expectedData)
     dataType match {
-      case "valid data" => DeclarationConfirmationPage.ResponseRows.get("ConversationId").get.length should not be(0)
-      case "invalid data" => DeclarationConfirmationPage.ResponseRows.get("ConversationId").get.length should be(0)
+      case "valid data" => DeclarationConfirmationPage.ResponseRows("ConversationId").length should not be(0)
+      case "invalid data" => DeclarationConfirmationPage.ResponseRows("ConversationId").length should be(0)
     }
   }
 
-  And("""^the declaration status should be (.*)$""") { (statusText: String) =>
+  Then("""^the declaration status should be (.*)$""") { (statusText: String) =>
     NotificationsPage.status should be(statusText)
+  }
+
+  Then("""^I should see the following errors$""".stripMargin) { dataTable: DataTable =>
+    dataTable.asScalaListOfStrings.foreach { error =>
+      assertElementInPageWithText("td", exists = true, error) // TODO check for something more specific than td
+    }
   }
 }

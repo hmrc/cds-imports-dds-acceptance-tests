@@ -1,6 +1,7 @@
 package uk.gov.hmrc.pages
 
 import org.openqa.selenium.By
+import org.scalatest.Assertion
 
 trait CustomsImportsWebPage extends BasePage {
 
@@ -14,6 +15,16 @@ trait CustomsImportsWebPage extends BasePage {
     AuthStubPage.logIn("registered user", stubSessionUrl)
     AuthStubPage.submit()
     bearerToken.getText
+  }
+
+  protected def assertElementInPageWithText(element: String, exists: Boolean, expectedParagraphText: String): Assertion = {
+    val allTextForElement = elementTextAll(element)
+    if (exists) {
+      allTextForElement should contain(expectedParagraphText)
+    }
+    else {
+      allTextForElement should not contain expectedParagraphText
+    }
   }
 
 }

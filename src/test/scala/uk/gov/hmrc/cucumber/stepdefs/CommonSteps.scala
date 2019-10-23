@@ -90,6 +90,57 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
                  |	</resp:Response>
                  |</md:MetaData>""".stripMargin
 
+    postNotificationToDecApi(body)
+  }
+
+  And("""^dec api is configured to send a rejected response message$""") { () =>
+    val body =
+      """<_2:MetaData xmlns:_2="urn:wco:datamodel:WCO:DocumentMetaData-DMS:2">
+        |    <_2:WCODataModelVersionCode>3.6</_2:WCODataModelVersionCode>
+        |    <_2:WCOTypeName>RES</_2:WCOTypeName>
+        |    <_2:ResponsibleCountryCode/>
+        |    <_2:ResponsibleAgencyName/>
+        |    <_2:AgencyAssignedCustomizationCode/>
+        |    <_2:AgencyAssignedCustomizationVersionCode/>
+        |    <_2_1:Response xmlns:_2_1="urn:wco:datamodel:WCO:RES-DMS:2">
+        |        <_2_1:FunctionCode>03</_2_1:FunctionCode>
+        |        <_2_1:FunctionalReferenceID>Mf1kMq9AKW5tQyRog8V</_2_1:FunctionalReferenceID>
+        |        <_2_1:IssueDateTime>
+        |            <_2_2:DateTimeString formatCode="304" xmlns:_2_2="urn:wco:datamodel:WCO:Response_DS:DMS:2">20191023124817Z</_2_2:DateTimeString>
+        |        </_2_1:IssueDateTime>
+        |        <_2_1:Error>
+        |            <_2_1:ValidationCode>CDS12050</_2_1:ValidationCode>
+        |            <_2_1:Pointer>
+        |                <_2_1:DocumentSectionCode>42A</_2_1:DocumentSectionCode>
+        |            </_2_1:Pointer>
+        |            <_2_1:Pointer>
+        |                <_2_1:DocumentSectionCode>67A</_2_1:DocumentSectionCode>
+        |            </_2_1:Pointer>
+        |            <_2_1:Pointer>
+        |                <_2_1:SequenceNumeric>1</_2_1:SequenceNumeric>
+        |                <_2_1:DocumentSectionCode>68A</_2_1:DocumentSectionCode>
+        |            </_2_1:Pointer>
+        |            <_2_1:Pointer>
+        |                <_2_1:DocumentSectionCode>70A</_2_1:DocumentSectionCode>
+        |                <_2_1:TagID>166</_2_1:TagID>
+        |            </_2_1:Pointer>
+        |        </_2_1:Error>
+        |        <_2_1:Declaration>
+        |            <_2_1:FunctionalReferenceID>Mf1kMq9AKW5tQyRog8V</_2_1:FunctionalReferenceID>
+        |            <_2_1:ID>19GBBQACB980OFGV07</_2_1:ID>
+        |            <_2_1:RejectionDateTime>
+        |                <_2_2:DateTimeString formatCode="304" xmlns:_2_2="urn:wco:datamodel:WCO:Response_DS:DMS:2">20191023124817Z</_2_2:DateTimeString>
+        |            </_2_1:RejectionDateTime>
+        |            <_2_1:VersionID>1</_2_1:VersionID>
+        |        </_2_1:Declaration>
+        |    </_2_1:Response>
+        |</_2:MetaData>
+        |""".stripMargin
+
+    postNotificationToDecApi(body)
+  }
+
+  private def postNotificationToDecApi(body: String) = {
     val bearerToken = getBearerToken
     val headers = List("Accept" -> "application/vnd.hmrc.1.0+xml",
                     "Content-Type" -> "application/xml",
@@ -98,27 +149,16 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
                     "X-Client-Id" -> "cds-imports-dds")
 
     val response = WSClient.httpPost("http://localhost:6790/customs-declarations-stub/admin/notification/cds-imports-dds/submit/Mf1kMq9AKW5tQyRog8V", body, headers: _*)
-    val result = Await.result(response.map(_.status), 5 seconds)
-    assert(result == 201, s"Update to mongo failed with error code $result")
-
+    val result = Await.result(response, 5 seconds)
+    assert(result.status == 201, s"POST to DEC-API failed with error code $result")
   }
 
   And("""^the mongo database is dropped$""") { () =>
     dropMongo("customs-declarations-stub")
   }
 
-  And("""^I wait for (.*) seconds$""") { seconds: Int =>
+  And("""^I wait for (\d+) seconds$""") { seconds: Int =>
     Thread.sleep(seconds*1000)
-  }
-
-  private def assertElementInPageWithText(element: String, exists: Boolean, expectedParagraphText: String) = {
-    val allTextForElement = elementTextAll(element)
-    if (exists) {
-      allTextForElement should contain(expectedParagraphText)
-    }
-    else {
-      allTextForElement should not contain expectedParagraphText
-    }
   }
 
 }
