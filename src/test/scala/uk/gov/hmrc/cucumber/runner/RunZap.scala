@@ -9,7 +9,7 @@ import org.junit.runner.RunWith
   features = Array("src/test/resources/features"),
   glue = Array("uk.gov.hmrc.cucumber.stepdefs"),
   plugin = Array ("pretty", "html:target/cucumber", "json:target/cucumber.json"),
-  tags = Array("@zap")
+  tags = Array("~@wip", "@zap")
 )
 class RunZap {
 }

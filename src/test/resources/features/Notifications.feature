@@ -1,4 +1,4 @@
-@acceptance @zap
+@acceptance @zap @wip
 Feature: Receive notifications from DMS
 
   Scenario: Receive and display Accepted notification from DMS
