@@ -18,7 +18,6 @@ trait DropMongo {
         .head(),
       2 seconds
     )
-    println("DROPPING MONGO DB : " + dbName)
     mongoClient.close()
   }
 

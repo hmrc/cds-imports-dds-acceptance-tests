@@ -2,9 +2,15 @@ package uk.gov.hmrc.cucumber.stepdefs
 
 import cucumber.api.DataTable
 import org.scalatest.AppendedClues
-import uk.gov.hmrc.pages.{CustomsImportsWebPage, DeclarationConfirmationPage, NotificationsPage, SubmitDeclarationPage}
+import play.api.libs.ws.StandaloneWSRequest
+import uk.gov.hmrc.pages._
+import uk.gov.hmrc.utils.WSClient
 
 import scala.collection.JavaConverters._
+import scala.concurrent.Await
+import scala.concurrent.duration._
+import scala.xml.{NodeSeq, XML}
+
 
 class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
 
@@ -64,4 +70,36 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
       assertElementInPageWithText("td", exists = true, error) // TODO check for something more specific than td
     }
   }
+
+  When("""^I enter the following data$""".stripMargin) { dataTable: DataTable =>
+    dataTable.asScalaListOfMaps.foreach { field =>
+      val inputField = inputFieldLabelled(field.get("Field Name"))
+      inputField.clear()
+      inputField.sendKeys(field.get("Value"))
+    }
+  }
+
+  When("""^I click on Submit""") { () =>
+    SimpleDeclarationPage.submit()
+  }
+
+  Then("""^the submitted XML should include the following data elements$""") { dataTable: DataTable =>
+    val eventualResponse = WSClient.httpGet("http://localhost:6790/last-submission")
+    val response: StandaloneWSRequest#Response = Await.result(eventualResponse, 5 seconds)
+
+    val submittedXML: NodeSeq = XML.loadString(response.body)
+
+    dataTable.asScalaListOfMaps.foreach { expectedElement =>
+      val expectedValue = expectedElement.get("Value")
+      val path = expectedElement.get("Path")
+      val nodes = path.split("/")
+
+      val actualElements = nodes.foldLeft(submittedXML) { case (node, pathFragment) => node \ pathFragment }
+
+      // TODO cope with multiple values
+      val actualValue = actualElements.headOption.map(_.text).getOrElse("NOT FOUND")
+      actualValue should be (expectedValue) withClue(s"for XML path $path")
+    }
+  }
+
 }

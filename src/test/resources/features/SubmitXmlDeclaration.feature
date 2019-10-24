@@ -1,9 +1,9 @@
 @acceptance
-Feature: Submit imports declarations to dec api
+Feature: Submit raw XML import declarations to the declarations API
 
   Background:
-    Given the mongo database is dropped
-    And My app is registered to Dec API
+    Given the mongo database is empty
+    And our application is registered with the DEC-API
 
   Scenario: Submit a declaration with malformed XML
     Given I am signed in as a registered user

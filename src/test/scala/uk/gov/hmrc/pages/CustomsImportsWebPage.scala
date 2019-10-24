@@ -1,7 +1,9 @@
 package uk.gov.hmrc.pages
 
-import org.openqa.selenium.By
+import org.openqa.selenium.{By, WebElement}
 import org.scalatest.Assertion
+
+import scala.collection.JavaConverters._
 
 trait CustomsImportsWebPage extends BasePage {
 
@@ -25,6 +27,15 @@ trait CustomsImportsWebPage extends BasePage {
     else {
       allTextForElement should not contain expectedParagraphText
     }
+  }
+
+  // TODO there's probably an XPath one-liner for this...
+  def inputFieldLabelled(labelName: String): WebElement = {
+    webDriver.findElements(By.tagName("label")).asScala.find(_.getText == labelName).map { label =>
+      val inputId = label.getAttribute("for")
+      webDriver.findElement(By.id(inputId))
+
+    }.getOrElse(throw new NoSuchElementException(s"""No <input> element with <label> "$labelName""""))
   }
 
 }

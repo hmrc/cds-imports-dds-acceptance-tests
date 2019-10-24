@@ -41,6 +41,7 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
     page match {
       case "Hello World" => HelloWorldPage.goToPage()
       case "Submit Declaration" => SubmitDeclarationPage.goToPage()
+      case "Simple Declaration" => SimpleDeclarationPage.goToPage()
     }
   }
 
@@ -53,7 +54,7 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
     click on partialLinkText(selectedLink)
   }
 
-  Given("""^My app is registered to Dec API$""") {() =>
+  Given("""^our application is registered with the DEC-API$""") {() =>
     val body = """{
                  |"clientId": "cds-imports-dds",
                  |"callbackUrl": "http://localhost:9760/customs/imports/notification",
@@ -65,11 +66,11 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
     assert(result == 201, s"Update to mongo failed with error code $result")
   }
 
-  And("""^the mongo database is dropped$""") { () =>
+  Given("""^the mongo database is empty$""") { () =>
     dropMongo("customs-declarations-stub")
   }
 
-  And("""^I wait for (\d+) seconds$""") { seconds: Int =>
+  When("""^I wait for (\d+) seconds$""") { seconds: Int =>
     Thread.sleep(seconds*1000)
   }
 

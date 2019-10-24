@@ -2,8 +2,8 @@
 Feature: Receive notifications from DMS
 
   Background:
-    Given the mongo database is dropped
-    And My app is registered to Dec API
+    Given the mongo database is empty
+    And our application is registered with the DEC-API
 
   Scenario: Receive and display Accepted notification from DMS
     And I am signed in as a registered user
