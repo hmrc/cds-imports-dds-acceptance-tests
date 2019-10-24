@@ -1,6 +1,10 @@
 @acceptance
 Feature: Submit imports declarations to dec api
 
+  Background:
+    Given the mongo database is dropped
+    And My app is registered to Dec API
+
   Scenario: Submit a declaration with malformed XML
     Given I am signed in as a registered user
     When I navigate to the Submit Declaration page

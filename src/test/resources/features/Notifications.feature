@@ -1,9 +1,11 @@
 @acceptance @zap
 Feature: Receive notifications from DMS
 
-  Scenario: Receive and display Accepted notification from DMS
+  Background:
     Given the mongo database is dropped
     And My app is registered to Dec API
+
+  Scenario: Receive and display Accepted notification from DMS
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page
     And I submit the declaration with correct data
@@ -16,8 +18,6 @@ Feature: Receive notifications from DMS
     And the declaration status should be ACCEPTED
 
   Scenario: Receive and display Rejected notification with errors from DMS
-    Given the mongo database is dropped
-    And My app is registered to Dec API
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page
     And I submit the declaration with incorrect data
