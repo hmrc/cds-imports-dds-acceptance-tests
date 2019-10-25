@@ -1,5 +1,7 @@
 package uk.gov.hmrc.cucumber.stepdefs
 
+import java.util
+
 import cucumber.api.DataTable
 import org.scalatest.AppendedClues
 import play.api.libs.ws.StandaloneWSRequest
@@ -85,20 +87,19 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
 
   Then("""^the submitted XML should include the following data elements$""") { dataTable: DataTable =>
     val eventualResponse = WSClient.httpGet("http://localhost:6790/last-submission")
-    val response: StandaloneWSRequest#Response = Await.result(eventualResponse, 5 seconds)
+    val response = Await.result(eventualResponse, 5 seconds)
 
     val submittedXML: NodeSeq = XML.loadString(response.body)
 
-    dataTable.asScalaListOfMaps.foreach { expectedElement =>
-      val expectedValue = expectedElement.get("Value")
-      val path = expectedElement.get("Path")
-      val nodes = path.split("/")
+    dataTable.asScalaListOfMaps.groupBy(_.get("Path")).foreach {
+      case (path: String, expectedElements: List[util.Map[String, String]] ) =>
+        val expectedValues = expectedElements.map(_.get("Value"))
 
-      val actualElements = nodes.foldLeft(submittedXML) { case (node, pathFragment) => node \ pathFragment }
+        val nodes = path.split("/")
+        val actualElements = nodes.foldLeft(submittedXML) { case (node, pathFragment) => node \ pathFragment }
+        val actualValues = actualElements.map(_.text)
 
-      // TODO cope with multiple values
-      val actualValue = actualElements.headOption.map(_.text).getOrElse("NOT FOUND")
-      actualValue should be (expectedValue) withClue(s"for XML path $path")
+        actualValues should be (expectedValues) withClue(s"for XML path $path")
     }
   }
 

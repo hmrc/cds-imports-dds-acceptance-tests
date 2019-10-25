@@ -27,10 +27,9 @@ Feature: Submit import declarations to the declarations API
       | Declaration/GoodsItemQuantity                                                           | 42    |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/SequenceNumeric                     | 17    |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode     | 66    |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode     | C07   |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/PreviousCode    | 99    |
-#      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode(2)  | C07   |
 
-  # TODO maybe just assert on field values on page load...
   Scenario: Section 1 default values
     Given I am signed in as a registered user
     When I navigate to the Simple Declaration page
@@ -47,4 +46,5 @@ Feature: Submit import declarations to the declarations API
       | Declaration/GoodsItemQuantity                                                           | 1     |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/SequenceNumeric                     | 1     |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode     | 40    |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode     | C07   |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/PreviousCode    | 00    |
