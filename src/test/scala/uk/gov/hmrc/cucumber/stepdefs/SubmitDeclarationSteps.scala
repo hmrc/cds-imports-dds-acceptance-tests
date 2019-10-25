@@ -84,7 +84,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   When("""^I click on Submit""") { () =>
-    SimpleDeclarationPage.submit()
+    SinglePageDeclarationPage.submit()
   }
 
   Then("""^the submitted XML should include the following data elements$""") { dataTable: DataTable =>

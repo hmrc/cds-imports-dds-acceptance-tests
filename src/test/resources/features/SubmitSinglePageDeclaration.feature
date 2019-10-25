@@ -1,5 +1,5 @@
 @acceptance
-Feature: Submit import declarations to the declarations API
+Feature: Submit import declarations to the declarations API via the single page form
 
   Background:
     Given the mongo database is empty

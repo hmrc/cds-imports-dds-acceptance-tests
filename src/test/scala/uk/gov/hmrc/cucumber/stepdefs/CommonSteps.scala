@@ -41,7 +41,7 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
     page match {
       case "Hello World" => HelloWorldPage.goToPage()
       case "Submit Declaration" => SubmitDeclarationPage.goToPage()
-      case "Simple Declaration" => SimpleDeclarationPage.goToPage()
+      case "Simple Declaration" => SinglePageDeclarationPage.goToPage()
     }
   }
 

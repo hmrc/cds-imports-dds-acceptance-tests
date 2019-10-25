@@ -82,7 +82,7 @@ async function RunPa11y() {
 
 	    // The pages we want to test
         const results = await Promise.all([
-            testPageWithLogin('http://localhost:9760/customs/imports/simple-declaration'),
+            testPageWithLogin('http://localhost:9760/customs/imports/single-page-declaration'),
             // testPageWithLogin('http://localhost:9760/customs/imports') // no footer on this page yet :(
             ]);
 
