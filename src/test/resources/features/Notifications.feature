@@ -16,7 +16,7 @@ Feature: Receive notifications from DMS
     When I click on the link View the status of your declaration
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be ACCEPTED
-@acceptance1
+
   Scenario: Receive and display Rejected notification with errors from DMS
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page

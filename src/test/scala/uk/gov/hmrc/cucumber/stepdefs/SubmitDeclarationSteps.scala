@@ -3,9 +3,7 @@ package uk.gov.hmrc.cucumber.stepdefs
 import java.util
 
 import cucumber.api.DataTable
-import org.openqa.selenium.By
 import org.scalatest.AppendedClues
-import play.api.libs.ws.StandaloneWSRequest
 import uk.gov.hmrc.pages._
 import uk.gov.hmrc.utils.WSClient
 
@@ -75,7 +73,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     }
   }
 
-  When("""^I enter the following data$""".stripMargin) { dataTable: DataTable =>
+  When("""^I enter the following data$""") { dataTable: DataTable =>
     dataTable.asScalaListOfMaps.foreach { field =>
       val inputField = inputFieldLabelled(field.get("Field Name"))
       inputField.clear()
