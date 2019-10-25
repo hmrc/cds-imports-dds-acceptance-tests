@@ -16,7 +16,7 @@ Feature: Receive notifications from DMS
     When I click on the link View the status of your declaration
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be ACCEPTED
-
+@acceptance1
   Scenario: Receive and display Rejected notification with errors from DMS
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page
@@ -29,4 +29,4 @@ Feature: Receive notifications from DMS
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be REJECTED
     And I should see the following errors
-    | NotificationError(CDS10020,List(ErrorPointer(42A,None,None), ErrorPointer(67A,None,None), ErrorPointer(68A,Some(1),None), ErrorPointer(02A,Some(2),Some(360)))) |
+    | Data Error: Data Element contains invalid value (CDS10020)Declaration (42A - x - x)GoodsShipment (67A - x - x)GovernmentAgencyGoodsItem (68A - 1 - x)AdditionalDocument (02A - 2 - 360) |

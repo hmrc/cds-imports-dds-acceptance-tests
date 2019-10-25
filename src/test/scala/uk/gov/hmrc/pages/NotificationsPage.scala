@@ -1,5 +1,7 @@
 package uk.gov.hmrc.pages
 
+import org.openqa.selenium.By
+
 object NotificationsPage extends CustomsImportsWebPage {
 
   override lazy val url = baseUrl + "/customs/imports/notification"
@@ -10,5 +12,7 @@ object NotificationsPage extends CustomsImportsWebPage {
 
     elementText(".declaration-status")
   }
+
+  def errors = webDriver.findElement(By.cssSelector(".wco-errors"))
 
 }

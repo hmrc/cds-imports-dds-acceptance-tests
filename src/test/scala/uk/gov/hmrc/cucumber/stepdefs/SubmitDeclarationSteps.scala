@@ -3,6 +3,7 @@ package uk.gov.hmrc.cucumber.stepdefs
 import java.util
 
 import cucumber.api.DataTable
+import org.openqa.selenium.By
 import org.scalatest.AppendedClues
 import play.api.libs.ws.StandaloneWSRequest
 import uk.gov.hmrc.pages._
@@ -67,9 +68,10 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     NotificationsPage.status should be(statusText)
   }
 
-  Then("""^I should see the following errors$""".stripMargin) { dataTable: DataTable =>
+  Then("""^I should see the following errors$""") { dataTable: DataTable =>
     dataTable.asScalaListOfStrings.foreach { error =>
-      assertElementInPageWithText("td", exists = true, error) // TODO check for something more specific than td
+      val actual = NotificationsPage.errors.getText.replaceAll("[\r\n]","")
+      actual should be(error)
     }
   }
 
