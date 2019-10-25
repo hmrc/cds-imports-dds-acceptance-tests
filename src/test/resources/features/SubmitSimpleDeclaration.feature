@@ -1,4 +1,4 @@
-@acceptance @wip
+@acceptance
 Feature: Submit import declarations to the declarations API
 
   Background:
@@ -7,6 +7,7 @@ Feature: Submit import declarations to the declarations API
 
   Scenario: Section 1 answers are mapped to the correct XML elements
     Given I am signed in as a registered user
+    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                             | Value |
@@ -30,8 +31,9 @@ Feature: Submit import declarations to the declarations API
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode     | C07   |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/PreviousCode    | 99    |
 
-  Scenario: Section 1 default values
+  Scenario: Section 1 default / auto-populated values
     Given I am signed in as a registered user
+    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                             | Value |
