@@ -10,14 +10,14 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value |
-      | Declaration Type                       | DT    |
-      | Additional Declaration Type            | A     |
-      | Goods Item Number                      | 17    |
-      | Total Number Of Items                  | 42    |
-      | Requested Procedure Code               | 66    |
-      | Previous Procedure Code                | 99    |
-      | Additional Procedure Code (000 or C07) | C07   |
+      | Field Name                                   | Value |
+      | 1.1. Declaration Type                        | DT    |
+      | 1.2. Additional Declaration Type             | A     |
+      | 1.6. Goods Item Number                       | 17    |
+      | 1.9. Total Number Of Items                   | 42    |
+      | 1.10. Requested Procedure Code               | 66    |
+      | 1.10. Previous Procedure Code                | 99    |
+      | 1.11. Additional Procedure Code (000 or C07) | C07   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -36,8 +36,8 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value |
-      | Additional Procedure Code (000 or C07) | C07   |
+      | Field Name                                   | Value |
+      | 1.11. Additional Procedure Code (000 or C07) | C07   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |

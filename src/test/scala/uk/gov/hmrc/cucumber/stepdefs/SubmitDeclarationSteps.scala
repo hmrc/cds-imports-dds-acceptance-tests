@@ -37,7 +37,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   def modifyFunctionalReferenceId(prefix: String, xml: String): String = {
-    val FUNCTIONAL_REFERENCE_ID_TAG = "<ns3:FunctionalReferenceID>"
+    val FUNCTIONAL_REFERENCE_ID_TAG = "FunctionalReferenceID>"
     xml.replace(FUNCTIONAL_REFERENCE_ID_TAG, s"$FUNCTIONAL_REFERENCE_ID_TAG$prefix")
   }
 
