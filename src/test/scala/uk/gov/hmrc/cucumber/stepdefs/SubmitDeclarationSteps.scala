@@ -62,8 +62,12 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     }
   }
 
-  Then("""^the declaration status should be (.*)$""") { (statusText: String) =>
-    NotificationsPage.status should be(statusText)
+  Then("""^the declaration status should be (.*)$""") { statusText: String =>
+    NotificationsPage.statusList.size match {
+      case 1          => NotificationsPage.status should be(statusText)
+      case x if x > 1 => NotificationsPage.statusList contains statusText
+      case _          => throw new NoSuchElementException("Declaration status is not received")
+    }
   }
 
   Then("""^I should see the following errors$""") { dataTable: DataTable =>
@@ -98,8 +102,9 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
         val nodes = path.split("/")
         val actualElements = nodes.foldLeft(submittedXML) { case (node, pathFragment) => node \ pathFragment }
         val actualValues = actualElements.map(_.text)
+        val commonValues = actualValues.intersect(expectedValues)
 
-        actualValues should be (expectedValues) withClue(s"for XML path $path")
+        commonValues.size should be (expectedValues.size) withClue(s"for XML path $path")
     }
   }
 

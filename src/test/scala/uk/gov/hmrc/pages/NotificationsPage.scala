@@ -8,10 +8,11 @@ object NotificationsPage extends CustomsImportsWebPage {
 
   val title = "Notifications"
 
-  def status = {
+  def status = elementText(".declaration-status")
 
-    elementText(".declaration-status")
-  }
+
+  def statusList = elementTextAll(".declaration-status")
+
 
   def errors = webDriver.findElement(By.cssSelector(".wco-errors"))
 
