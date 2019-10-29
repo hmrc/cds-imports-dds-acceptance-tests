@@ -55,10 +55,10 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
 
   Then("""^I should see submitted page with the following response details for (.*)$""") {(dataType: String, dataTable: DataTable) =>
     val expectedData = dataTable.asMaps(classOf[String], classOf[String]).get(0).asScala.toMap.get("Status")
-    DeclarationConfirmationPage.ResponseRows.get("Status") should be(expectedData)
+    DeclarationConfirmationPage.decApiResponseRows.get("Status") should be(expectedData)
     dataType match {
-      case "valid data" => DeclarationConfirmationPage.ResponseRows("ConversationId").length should not be(0)
-      case "invalid xml" => DeclarationConfirmationPage.ResponseRows("ConversationId").length should be(0)
+      case "valid data" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be(0)
+      case "invalid xml" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should be(0)
     }
   }
 
