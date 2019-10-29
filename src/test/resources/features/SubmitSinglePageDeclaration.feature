@@ -1,4 +1,4 @@
-@acceptance
+@acceptance @zap
 Feature: Submit import declarations to the declarations API via the single page form
 
   Background:
