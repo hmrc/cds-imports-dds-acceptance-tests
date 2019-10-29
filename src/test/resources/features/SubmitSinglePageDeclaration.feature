@@ -33,14 +33,18 @@ Feature: Submit import declarations to the declarations API via the single page 
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
+    And the submitted XML should include a Declaration with the following data elements
+      | Element           | Value |
+      | TypeCode          | DTA   |
+      | GoodsItemQuantity | 42    |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following data elements
+      | Element                          | Value |
+      | SequenceNumeric                  | 17    |
+      | GovernmentProcedure/CurrentCode  | 66    |
+      | GovernmentProcedure/CurrentCode  | C07   |
+      | GovernmentProcedure/PreviousCode | 99    |
     And the submitted XML should include the following data elements
       | Path                                                                                           | Value            |
-      | Declaration/TypeCode                                                                           | DTA              |
-      | Declaration/GoodsItemQuantity                                                                  | 42               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/SequenceNumeric                            | 17               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode            | 66               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode            | C07              |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/PreviousCode           | 99               |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/CategoryCode              | Y                |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/TypeCode                  | DCR              |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/ID                        | 9GB201909014000  |
@@ -52,6 +56,24 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/ID                      | 12345/30.09.2019 |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/LPCOExemptionCode       | AC               |
 #      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/Name                    | DocumentName      |
+
+# TODO - restate the above as something like this:
+#    And the submitted XML should include a GovernmentAgencyGoodsItem that includes the following PreviousDocument
+#      | Path         | Value           |
+#      | CategoryCode | Y               |
+#      | TypeCode     | DCR             |
+#      | ID           | 9GB201909014000 |
+#      | LineNumeric  | 1               |
+#    And the submitted XML should include a GovernmentAgencyGoodsItem that includes the following AdditionalInformation
+#      | Path                 | Value    |
+#      | StatementCode        | 00500    |
+#      | StatementDescription | IMPORTER |
+#    And the submitted XML should include a GovernmentAgencyGoodsItem that includes the following AdditionalDocument
+#      | Path                    | Value            |
+#      | CategoryCode            | N                |
+#      | TypeCode                | 935              |
+#      | ID                      | 12345/30.09.2019 |
+#      | LPCOExemptionCode       | AC               |
 
   Scenario: Section 1 default / auto-populated values
     Given I am signed in as a registered user

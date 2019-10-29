@@ -57,7 +57,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     val expectedData = dataTable.asMaps(classOf[String], classOf[String]).get(0).asScala.toMap.get("Status")
     DeclarationConfirmationPage.decApiResponseRows.get("Status") should be(expectedData)
     dataType match {
-      case "valid data" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be(0)
+      case "valid data" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be 0
       case "invalid xml" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should be(0)
     }
   }
@@ -90,10 +90,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   Then("""^the submitted XML should include the following data elements$""") { dataTable: DataTable =>
-    val eventualResponse = WSClient.httpGet("http://localhost:6790/last-submission")
-    val response = Await.result(eventualResponse, 5 seconds)
-
-    val submittedXML: NodeSeq = XML.loadString(response.body)
+    val submittedXML = lastSubmittedXML()
 
     dataTable.asScalaListOfMaps.groupBy(_.get("Path")).foreach {
       case (path: String, expectedElements: List[util.Map[String, String]] ) =>
@@ -104,8 +101,36 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
         val actualValues = actualElements.map(_.text)
         val commonValues = actualValues.intersect(expectedValues)
 
-        commonValues.size should be (expectedValues.size) withClue(s"for XML path $path")
+        commonValues.size should be (expectedValues.size) withClue s"for XML path $path"
     }
   }
 
+  Then("""^the submitted XML should include a (.*) with the following data elements$""") { (expectedElementName: String, dataTable: DataTable) =>
+    val actualElements = lastSubmittedXML() \\ expectedElementName
+
+    val expectedSubElements = dataTable.asScalaListOfMaps
+    val expectedKeyValuePairs = expectedSubElements.map(ee => (ee.get("Element"), ee.get("Value")))
+
+    val actualKeyValuePairs = actualElements.map { actualElement =>
+      expectedKeyValuePairs.flatMap { case (path: String, expectedValue: String) =>
+        findElements(actualElement, path).filter(_.text == expectedValue).map { actualSubElement =>
+          (path, actualSubElement.text)
+        }
+      }
+    }
+
+    actualKeyValuePairs should contain(expectedKeyValuePairs)
+  }
+
+  private def lastSubmittedXML(): NodeSeq = {
+    val eventualResponse = WSClient.httpGet("http://localhost:6790/last-submission")
+    val response = Await.result(eventualResponse, 5.seconds)
+    val submittedXML: NodeSeq = XML.loadString(response.body)
+    submittedXML
+  }
+
+  private def findElements(rootElement: NodeSeq, path: String): NodeSeq = {
+    val nodes = path.split("/")
+    nodes.foldLeft(rootElement) { case (node, pathFragment) => node \ pathFragment }
+  }
 }
