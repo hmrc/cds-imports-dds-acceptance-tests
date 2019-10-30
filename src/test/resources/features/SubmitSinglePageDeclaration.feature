@@ -43,37 +43,22 @@ Feature: Submit import declarations to the declarations API via the single page 
       | GovernmentProcedure/CurrentCode  | 66    |
       | GovernmentProcedure/CurrentCode  | C07   |
       | GovernmentProcedure/PreviousCode | 99    |
-    And the submitted XML should include the following data elements
-      | Path                                                                                           | Value            |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/CategoryCode              | Y                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/TypeCode                  | DCR              |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/ID                        | 9GB201909014000  |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/LineNumeric               | 1                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalInformation/StatementCode        | 00500            |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalInformation/StatementDescription | IMPORTER         |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/CategoryCode            | N                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/TypeCode                | 935              |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/ID                      | 12345/30.09.2019 |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/LPCOExemptionCode       | AC               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/Name                    | DocumentName     |
-
-# TODO - restate the above as something like this:
-#    And the submitted XML should include a GovernmentAgencyGoodsItem that includes the following PreviousDocument
-#      | Path         | Value           |
-#      | CategoryCode | Y               |
-#      | TypeCode     | DCR             |
-#      | ID           | 9GB201909014000 |
-#      | LineNumeric  | 1               |
-#    And the submitted XML should include a GovernmentAgencyGoodsItem that includes the following AdditionalInformation
-#      | Path                 | Value    |
-#      | StatementCode        | 00500    |
-#      | StatementDescription | IMPORTER |
-#    And the submitted XML should include a GovernmentAgencyGoodsItem that includes the following AdditionalDocument
-#      | Path                    | Value            |
-#      | CategoryCode            | N                |
-#      | TypeCode                | 935              |
-#      | ID                      | 12345/30.09.2019 |
-#      | LPCOExemptionCode       | AC               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Y               |
+      | TypeCode     | DCR             |
+      | ID           | 9GB201909014000 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | 00500    |
+      | StatementDescription | IMPORTER |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+      | Element                 | Value            |
+      | CategoryCode            | N                |
+      | TypeCode                | 935              |
+      | ID                      | 12345/30.09.2019 |
+      | LPCOExemptionCode       | AC               |
 
   Scenario: Section 1 default / auto-populated values
     Given I am signed in as a registered user
