@@ -28,7 +28,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.3 Document Type Code                       | 935              |
       | 2.3 Document Identifier                      | 12345/30.09.2019 |
       | 2.3 Document Status                          | AC               |
-      | 2.3 Document Status Reason                   | DocumentName      |
+      | 2.3 Document Status Reason                   | DocumentName     |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -59,6 +59,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | TypeCode                | 935              |
       | ID                      | 12345/30.09.2019 |
       | LPCOExemptionCode       | AC               |
+      | Name                    | DocumentName     |
 
   Scenario: Section 1 default / auto-populated values
     Given I am signed in as a registered user
