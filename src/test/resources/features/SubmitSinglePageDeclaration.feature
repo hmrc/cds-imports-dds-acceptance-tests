@@ -11,13 +11,13 @@ Feature: Submit import declarations to the declarations API via the single page 
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                   | Value            |
-      | 1.1. Declaration Type                        | DT               |
-      | 1.2. Additional Declaration Type             | A                |
-      | 1.6. Goods Item Number                       | 17               |
-      | 1.9. Total Number Of Items                   | 42               |
-      | 1.10. Requested Procedure Code               | 66               |
-      | 1.10. Previous Procedure Code                | 99               |
-      | 1.11. Additional Procedure Code (000 or C07) | C07              |
+      | 1.1 Declaration Type                         | DT               |
+      | 1.2 Additional Declaration Type              | A                |
+      | 1.6 Goods Item Number                        | 17               |
+      | 1.9 Total Number Of Items                    | 42               |
+      | 1.10 Requested Procedure Code                | 66               |
+      | 1.10 Previous Procedure Code                 | 99               |
+      | 1.11 Additional Procedure Code (000 or C07)  | C07              |
       | 2.1 Document Category                        | Y                |
       | 2.1 Previous Document Type                   | DCR              |
       | 2.1 Previous Document Reference              | 9GB201909014000  |
@@ -66,8 +66,8 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                   | Value |
-      | 1.11. Additional Procedure Code (000 or C07) | C07   |
+      | Field Name                                  | Value |
+      | 1.11 Additional Procedure Code (000 or C07) | C07   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
