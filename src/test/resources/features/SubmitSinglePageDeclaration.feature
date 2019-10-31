@@ -10,29 +10,29 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                   | Value            |
-      | 1.1 Declaration Type                         | DT               |
-      | 1.2 Additional Declaration Type              | A                |
-      | 1.6 Goods Item Number                        | 17               |
-      | 1.9 Total Number Of Items                    | 42               |
-      | 1.10 Requested Procedure Code                | 66               |
-      | 1.10 Previous Procedure Code                 | 99               |
-      | 1.11 Additional Procedure Code (000 or C07)  | C07              |
-      | 2.1 Document Category                        | Y                |
-      | 2.1 Previous Document Type                   | DCR              |
-      | 2.1 Previous Document Reference              | 9GB201909014000  |
-      | 2.1 Goods Item Identifier                    | 1                |
-      | 2.2 Code                                     | 00500            |
-      | 2.2 Description                              | IMPORTER         |
-      | 2.3 Document Category Code                   | N                |
-      | 2.3 Document Type Code                       | 935              |
-      | 2.3 Document Identifier                      | 12345/30.09.2019 |
-      | 2.3 Document Status                          | AC               |
-      | 2.3 Document Status Reason                   | DocumentName     |
-      | 2.5 LRN                                      | Test1234         |
-      | 2.6 Deferred Payment ID                      | 1909241          |
-      | 2.6 Deferred Payment Category                | 1                |
-      | 2.6 Deferred Payment Type                    | DAN              |
+      | Field Name                                                            | Value            |
+      | 1.1 Declaration Type                                                  | DT               |
+      | 1.2 Additional Declaration Type                                       | A                |
+      | 1.6 Goods Item Number                                                 | 17               |
+      | 1.9 Total Number Of Items                                             | 42               |
+      | 1.10 Requested Procedure Code                                         | 66               |
+      | 1.10 Previous Procedure Code                                          | 99               |
+      | 1.11 Additional Procedure Code (000 or C07)                           | C07              |
+      | 2.1 Previous Document Category                                        | Y                |
+      | 2.1 Previous Document Type                                            | DCR              |
+      | 2.1 Previous Document Reference                                       | 9GB201909014000  |
+      | 2.1 Previous Document Goods Item Identifier                           | 1                |
+      | 2.2 Additional Information Code                                       | 00500            |
+      | 2.2 Additional Information Description                                | IMPORTER         |
+      | 2.3 Additional Document Category Code                                 | N                |
+      | 2.3 Additional Document Type Code                                     | 935              |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) | 12345/30.09.2019 |
+      | 2.3 Additional Document Status                                        | AC               |
+      | 2.3 Additional Document Status Reason                                 | DocumentName     |
+      | 2.5 LRN                                                               | Test1234         |
+      | 2.6 Deferred Payment ID                                               | 1909241          |
+      | 2.6 Deferred Payment Category                                         | 1                |
+      | 2.6 Deferred Payment Type                                             | DAN              |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -78,21 +78,6 @@ Feature: Submit import declarations to the declarations API via the single page 
     And I enter the following data
       | Field Name                                   | Value |
       | 1.11 Additional Procedure Code (000 or C07)  | C07   |
-      | 2.1 Document Category                        | Y                |
-      | 2.1 Previous Document Type                   | DCR              |
-      | 2.1 Previous Document Reference              | 9GB201909014000  |
-      | 2.1 Goods Item Identifier                    | 1                |
-      | 2.2 Code                                     | 00500            |
-      | 2.2 Description                              | IMPORTER         |
-      | 2.3 Document Category Code                   | N                |
-      | 2.3 Document Type Code                       | 935              |
-      | 2.3 Document Identifier                      | 12345/30.09.2019 |
-      | 2.3 Document Status                          | AC               |
-      | 2.3 Document Status Reason                   | DocumentName     |
-      | 2.5 LRN                                      | Test1234         |
-      | 2.6 Deferred Payment ID                      | 1909241          |
-      | 2.6 Deferred Payment Category                | 1                |
-      | 2.6 Deferred Payment Type                    | DAN              |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -105,4 +90,18 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode            | 40               |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode            | C07              |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/PreviousCode           | 00               |
-
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/CategoryCode              | Y                |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/TypeCode                  | DCR              |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/ID                        | 9GB201909014000  |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/LineNumeric               | 1                |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalInformation/StatementCode        | 00500            |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalInformation/StatementDescription | IMPORTER         |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/CategoryCode            | N                |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/TypeCode                | 935              |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/ID                      | 12345/30.09.2019 |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/LPCOExemptionCode       | AC               |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/Name                    | DocumentName     |
+      | Declaration/FunctionalReferenceID                                                              | Test1234         |
+      | Declaration/AdditionalDocument/ID                                                              | 1909241          |
+      | Declaration/AdditionalDocument/CategoryCode                                                    | 1                |
+      | Declaration/AdditionalDocument/TypeCode                                                        | DAN              |
