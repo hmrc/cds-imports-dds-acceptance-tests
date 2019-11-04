@@ -35,4 +35,4 @@ Feature: Receive notifications from DMS
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be REJECTED
     And I should see the following errors
-    | Data Error: Data Element contains invalid value (CDS10020)Declaration (42A - x - x)GoodsShipment (67A - x - x)GovernmentAgencyGoodsItem (68A - 1 - x)AdditionalDocument (02A - 2 - 360) |
+    | Data Error: Data Element contains invalid value (CDS10020)Declaration (42A, -, -)GoodsShipment (67A, -, -)GovernmentAgencyGoodsItem (68A, 1, -)AdditionalDocument/LPCOExemptionCode (02A, 2, 360) |
