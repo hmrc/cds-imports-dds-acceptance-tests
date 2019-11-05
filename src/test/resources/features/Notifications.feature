@@ -12,11 +12,7 @@ Feature: Receive notifications from DMS
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And I wait for 5 seconds
-    # ^^^ in-built notification delay in DEC-API stub is 2 seconds
     When I click on the link View the status of your declaration
-    And I wait for 5 seconds
-    # ^^^ FIXME subsequent steps sometimes execute before the href target page is rendered
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be ACCEPTED
 
@@ -27,11 +23,7 @@ Feature: Receive notifications from DMS
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And I wait for 5 seconds
-    # ^^^ in-built notification delay in DEC-API stub is 2 seconds
     When I click on the link View the status of your declaration
-    And I wait for 5 seconds
-    # ^^^ FIXME subsequent steps sometimes execute before the href target page is rendered
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be REJECTED
     And I should see the following errors

@@ -1,6 +1,7 @@
 package uk.gov.hmrc.pages
 
 import cucumber.api.scala.{EN, ScalaDsl}
+import org.openqa.selenium.By
 import org.scalatest.Matchers
 import org.scalatestplus.selenium.WebBrowser
 import uk.gov.hmrc.conf.TestConfiguration
@@ -38,5 +39,22 @@ trait BasePage extends Matchers with WebBrowser with StartUpTearDown with ScalaD
   }
 
   def pageTitle = webDriver.getTitle
+
+  def refreshUntilElementVisible(elementLocator: String): Unit = {
+    var elements = webDriver.findElements(By.cssSelector(elementLocator))
+    var b = elements.size match {
+      case 0 => false
+      case x if x>0 => true
+    }
+    while (!b) {
+      if(elements.size() <= 0) {
+        Thread.sleep(500L)
+        webDriver.navigate().refresh()
+        elements = webDriver.findElements(By.cssSelector(elementLocator))
+      } else {
+          b = true
+      }
+    }
+  }
 }
 

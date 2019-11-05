@@ -55,6 +55,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
 
   Then("""^I should see submitted page with the following response details for (.*)$""") {(dataType: String, dataTable: DataTable) =>
     val expectedData = dataTable.asMaps(classOf[String], classOf[String]).get(0).asScala.toMap.get("Status")
+    refreshUntilElementVisible(".govuk-link")
     DeclarationConfirmationPage.decApiResponseRows.get("Status") should be(expectedData)
     dataType match {
       case "valid data" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be 0
@@ -63,6 +64,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   Then("""^the declaration status should be (.*)$""") { statusText: String =>
+    refreshUntilElementVisible(".declaration-status")
     NotificationsPage.statusList.size match {
       case 1          => NotificationsPage.status should be(statusText)
       case x if x > 1 => NotificationsPage.statusList contains statusText
