@@ -4,7 +4,7 @@ Feature: Submit import declarations to the declarations API via the single page 
   Background:
     Given the mongo database is empty
     And our application is registered with the DEC-API
-@wip
+
   Scenario: Sections 1 and 2 answers are mapped to the correct XML elements
     Given I am signed in as a registered user
     And the Single Page Declaration feature is enabled
@@ -28,7 +28,22 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.3 Additional Document Type Code 1                                   | 935              |
       | 2.3 Additional Document Identifier (include TSP authorisation number) 1 | 12345/30.09.2019 |
       | 2.3 Additional Document Status 1                                      | AC               |
-      | 2.3 Additional Document Status Reason 1                               | DocumentName     |
+      | 2.3 Additional Document Status Reason 1                               | DocumentName1    |
+      | 2.3 Additional Document Category Code 2                               | C                |
+      | 2.3 Additional Document Type Code 2                                   | 514              |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 2 | GBEIR201909014000 |
+      | 2.3 Additional Document Status 2                                      | AE               |
+      | 2.3 Additional Document Status Reason 2                               | DocumentName2    |
+      | 2.3 Additional Document Category Code 3                               | C                |
+      | 2.3 Additional Document Type Code 3                                   | 506              |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 3 | GBDPO1909241 |
+      | 2.3 Additional Document Status 3                                      | AC               |
+      | 2.3 Additional Document Status Reason 3                               | DocumentName3    |
+      | 2.3 Additional Document Category Code 4                               | I                |
+      | 2.3 Additional Document Type Code 4                                   | 004              |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 4 | GBCPI000001-0001 |
+      | 2.3 Additional Document Status 4                                      | AE               |
+      | 2.3 Additional Document Status Reason 4                               | DocumentName4    |
       | 2.5 LRN                                                               | Test1234         |
       | 2.6 Deferred Payment ID 1                                             | 1909241          |
       | 2.6 Deferred Payment Category 1                                       | 1                |
@@ -93,9 +108,30 @@ Feature: Submit import declarations to the declarations API via the single page 
       | TypeCode                | 935              |
       | ID                      | 12345/30.09.2019 |
       | LPCOExemptionCode       | AC               |
-      | Name                    | DocumentName     |
+      | Name                    | DocumentName1    |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+      | Element                 | Value             |
+      | CategoryCode            | C                 |
+      | TypeCode                | 514               |
+      | ID                      | GBEIR201909014000 |
+      | LPCOExemptionCode       | AE                |
+      | Name                    | DocumentName2     |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+      | Element                 | Value         |
+      | CategoryCode            | C             |
+      | TypeCode                | 506           |
+      | ID                      | GBDPO1909241  |
+      | LPCOExemptionCode       | AC            |
+      | Name                    | DocumentName3 |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+      | Element                 | Value            |
+      | CategoryCode            | I                |
+      | TypeCode                | 004              |
+      | ID                      | GBCPI000001-0001 |
+      | LPCOExemptionCode       | AE               |
+      | Name                    | DocumentName4    |
 
-  @wip1
+  @wip
   Scenario: Section 3 answers are mapped to the correct XML elements
     Given I am signed in as a registered user
     And the Single Page Declaration feature is enabled
@@ -212,7 +248,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/TypeCode                | 935              |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/ID                      | 12345/30.09.2019 |
       | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/LPCOExemptionCode       | AC               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/Name                    | DocumentName     |
+      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/Name                    | DocumentName1    |
       | Declaration/FunctionalReferenceID                                                              | Test1234         |
       | Declaration/AdditionalDocument/ID                                                              | 1909241          |
       | Declaration/AdditionalDocument/CategoryCode                                                    | 1                |
