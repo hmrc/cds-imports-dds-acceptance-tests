@@ -218,6 +218,47 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element  | Value    |
       | ID       | 99887766 |
       | RoleCode | VAT      |
+  @wip
+  Scenario: Section 4 answers are mapped to the correct XML elements
+    Given I am signed in as a registered user
+    And the Single Page Declaration feature is enabled
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | 4.1 INCOTERM code                 | CFR       |
+      | 4.1 UN/LOCODE code                | GBDVR     |
+      | 4.1 Country code + Location Name  | AD        |
+      | 4.8 Method of Payment             | E         |
+      | 4.13 Valuation Indicators         | 0000      |
+      | 4.14 Item Price/Amount            | 90500000  |
+      | 4.14 Item Price/Currency Unit     | GBP       |
+      | 4.15 Exchange Rate                | 1.25      |
+      | 4.16 Valuation Method             | 1         |
+      | 4.17 Preference                   | 100       |
+    And I click on Submit
+    And the submitted XML should include a Declaration with the following TradeTerms
+      | Element       | Value |
+      | ConditionCode | CFR   |
+      | LocationID    | GBDVR |
+      | LocationName  | AD    |
+    And the submitted XML should include a Declaration with the following CurrencyExchange
+      | Element     | Value |
+      | RateNumeric | 1.25  |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Payment
+      | Element    | Value |
+      | MethodCode | E     |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following ValuationAdjustment
+      | Element      | Value |
+      | AdditionCode | 0000  |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following InvoiceLine
+      | Element          | Value    |
+      | ItemChargeAmount | 90500000 |
+    And the CurrencyID attribute of node ItemChargeAmount should be GBP
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
+      | Element          | Value    |
+      | MethodCode       | 1        |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
+      | Element          | Value    |
+      | DutyRegimeCode   | 100      |
 
   Scenario: Section 1 default / auto-populated values
     Given I am signed in as a registered user

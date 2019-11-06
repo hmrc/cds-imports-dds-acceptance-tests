@@ -126,6 +126,11 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     actualKeyValuePairs should contain(expectedKeyValuePairs)
   }
 
+  And("""^the (.*) attribute of node (.*) should be (.*)$""") { (attributeName: String, expectedSubElementName: String, expectedValue: String) =>
+    val actualValue = (lastSubmittedXML() \\ expectedSubElementName \ s"@$attributeName").toString()
+    actualValue should be(expectedValue) withClue s"$attributeName attribute is not present in $expectedSubElementName node"
+  }
+
   private def lastSubmittedXML(): NodeSeq = {
     val eventualResponse = WSClient.httpGet("http://localhost:6790/last-submission")
     val response = Await.result(eventualResponse, 5.seconds)
