@@ -33,6 +33,16 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.6 Deferred Payment ID                                               | 1909241          |
       | 2.6 Deferred Payment Category                                         | 1                |
       | 2.6 Deferred Payment Type                                             | DAN              |
+      | 4.1 INCOTERM code                                                     | CFR                 |
+      | 4.1 UN/LOCODE code                                                    | GBDVR                 |
+      | 4.1 Country code + Location Name                                      | AD                 |
+      | 4.8 Method of Payment                                                 | E                 |
+      | 4.13 Valuation Indicators                                             | 0000                 |
+      | 4.14 Item Price/Amount                                                | 90500000                 |
+      | 4.14 Item Price/Currency Unit                                         | GBP                 |
+      | 4.15 Exchange Rate                                                    | 1.25                 |
+      | 4.16 Valuation Method                                                 | 1                 |
+      | 4.17 Preference                                                       | 100               |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -47,6 +57,14 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                    | 1909241 |
       | CategoryCode          | 1       |
       | TypeCode              | DAN     |
+    And the submitted XML should include a Declaration with the following TradeTerms
+      | Element       | Value |
+      | ConditionCode | CFR   |
+      | LocationID    | GBDVR |
+      | LocationName  | AD    |
+    And the submitted XML should include a Declaration with the following CurrencyExchange
+      | Element     | Value |
+      | RateNumeric | 1.25  |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following data elements
       | Element                          | Value |
       | SequenceNumeric                  | 17    |
@@ -70,6 +88,23 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                      | 12345/30.09.2019 |
       | LPCOExemptionCode       | AC               |
       | Name                    | DocumentName     |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Payment
+      | Element    | Value |
+      | MethodCode | E     |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following ValuationAdjustment
+      | Element      | Value |
+      | AdditionCode | 0000  |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following InvoiceLine
+      | Element          | Value    |
+      | ItemChargeAmount | 90500000 |
+    And the CurrencyID attribute of node ItemChargeAmount should be GBP
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
+      | Element          | Value    |
+      | MethodCode       | 1        |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
+      | Element          | Value    |
+      | DutyRegimeCode   | 100      |
+
 
   @wip
   Scenario: Section 3 answers are mapped to the correct XML elements
