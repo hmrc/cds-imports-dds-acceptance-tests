@@ -4,7 +4,7 @@ Feature: Submit import declarations to the declarations API via the single page 
   Background:
     Given the mongo database is empty
     And our application is registered with the DEC-API
-
+@wip
   Scenario: Sections 1 and 2 answers are mapped to the correct XML elements
     Given I am signed in as a registered user
     And the Single Page Declaration feature is enabled
@@ -24,15 +24,24 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.1 Previous Document Goods Item Identifier                           | 1                |
       | 2.2 Additional Information Code                                       | 00500            |
       | 2.2 Additional Information Description                                | IMPORTER         |
-      | 2.3 Additional Document Category Code                                 | N                |
-      | 2.3 Additional Document Type Code                                     | 935              |
-      | 2.3 Additional Document Identifier (include TSP authorisation number) | 12345/30.09.2019 |
-      | 2.3 Additional Document Status                                        | AC               |
-      | 2.3 Additional Document Status Reason                                 | DocumentName     |
+      | 2.3 Additional Document Category Code 1                               | N                |
+      | 2.3 Additional Document Type Code 1                                   | 935              |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 1 | 12345/30.09.2019 |
+      | 2.3 Additional Document Status 1                                      | AC               |
+      | 2.3 Additional Document Status Reason 1                               | DocumentName     |
       | 2.5 LRN                                                               | Test1234         |
-      | 2.6 Deferred Payment ID                                               | 1909241          |
-      | 2.6 Deferred Payment Category                                         | 1                |
-      | 2.6 Deferred Payment Type                                             | DAN              |
+      | 2.6 Deferred Payment ID 1                                             | 1909241          |
+      | 2.6 Deferred Payment Category 1                                       | 1                |
+      | 2.6 Deferred Payment Type 1                                           | DAN              |
+      | 2.6 Deferred Payment ID 2                                             | 1909242          |
+      | 2.6 Deferred Payment Category 2                                       | 1                |
+      | 2.6 Deferred Payment Type 2                                           | DAN              |
+      | 2.6 Deferred Payment ID 3                                             | 1909243          |
+      | 2.6 Deferred Payment Category 3                                       | 1                |
+      | 2.6 Deferred Payment Type 3                                           | DAN              |
+      | 2.6 Deferred Payment ID 4                                             | 1909244          |
+      | 2.6 Deferred Payment Category 4                                       | 1                |
+      | 2.6 Deferred Payment Type 4                                           | DAN              |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -45,6 +54,21 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a Declaration with the following AdditionalDocument
       | Element               | Value   |
       | ID                    | 1909241 |
+      | CategoryCode          | 1       |
+      | TypeCode              | DAN     |
+    And the submitted XML should include a Declaration with the following AdditionalDocument
+      | Element               | Value   |
+      | ID                    | 1909242 |
+      | CategoryCode          | 1       |
+      | TypeCode              | DAN     |
+    And the submitted XML should include a Declaration with the following AdditionalDocument
+      | Element               | Value   |
+      | ID                    | 1909243 |
+      | CategoryCode          | 1       |
+      | TypeCode              | DAN     |
+    And the submitted XML should include a Declaration with the following AdditionalDocument
+      | Element               | Value   |
+      | ID                    | 1909244 |
       | CategoryCode          | 1       |
       | TypeCode              | DAN     |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following data elements
@@ -71,7 +95,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | LPCOExemptionCode       | AC               |
       | Name                    | DocumentName     |
 
-  @wip
+  @wip1
   Scenario: Section 3 answers are mapped to the correct XML elements
     Given I am signed in as a registered user
     And the Single Page Declaration feature is enabled
