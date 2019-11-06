@@ -70,22 +70,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                      | 12345/30.09.2019 |
       | LPCOExemptionCode       | AC               |
       | Name                    | DocumentName     |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Payment
-      | Element    | Value |
-      | MethodCode | E     |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following ValuationAdjustment
-      | Element      | Value |
-      | AdditionCode | 0000  |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following InvoiceLine
-      | Element          | Value    |
-      | ItemChargeAmount | 90500000 |
-    And the CurrencyID attribute of node ItemChargeAmount should be GBP
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
-      | Element          | Value    |
-      | MethodCode       | 1        |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
-      | Element          | Value    |
-      | DutyRegimeCode   | 100      |
 
 
   @wip
