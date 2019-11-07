@@ -127,7 +127,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   And("""^the (.*) attribute of node (.*) should be (.*)$""") { (attributeName: String, expectedSubElementName: String, expectedValue: String) =>
-    val actualValue = (lastSubmittedXML() \\ expectedSubElementName).head.attribute("currencyID").get.head.text
+    val actualValue = (lastSubmittedXML() \\ expectedSubElementName).head.attribute(attributeName).get.head.text
     actualValue should be(expectedValue) withClue s"$attributeName attribute is not present in $expectedSubElementName node"
   }
 
