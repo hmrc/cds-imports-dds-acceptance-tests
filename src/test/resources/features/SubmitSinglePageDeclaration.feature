@@ -4,10 +4,10 @@ Feature: Submit import declarations to the declarations API via the single page 
   Background:
     Given the mongo database is empty
     And our application is registered with the DEC-API
+    And I am signed in as a registered user
+    And the Single Page Declaration feature is enabled
 
   Scenario: Sections 1 and 2 answers are mapped to the correct XML elements
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                            | Value            |
@@ -74,8 +74,6 @@ Feature: Submit import declarations to the declarations API via the single page 
 
   @wip
   Scenario: Section 3 answers are mapped to the correct XML elements
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                             | Value                   |
@@ -161,8 +159,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | RoleCode | VAT      |
   @wip
   Scenario: Section 4 answers are mapped to the correct XML elements
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | 4.1 INCOTERM code                 | CFR       |
@@ -202,8 +198,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | DutyRegimeCode   | 100      |
 
   Scenario: Section 1 default / auto-populated values
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                   | Value |
