@@ -161,16 +161,17 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 4 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | 4.1 INCOTERM code                 | CFR       |
-      | 4.1 UN/LOCODE code                | GBDVR     |
-      | 4.1 Country code + Location Name  | AD        |
-      | 4.8 Method of Payment             | E         |
-      | 4.13 Valuation Indicators         | 0000      |
-      | 4.14 Item Price/Amount            | 90500000  |
-      | 4.14 Item Price/Currency Unit     | GBP       |
-      | 4.15 Exchange Rate                | 1.25      |
-      | 4.16 Valuation Method             | 1         |
-      | 4.17 Preference                   | 100       |
+      | Field Name                       | Value    |
+      | 4.1 INCOTERM code                | CFR      |
+      | 4.1 UN/LOCODE code               | GBDVR    |
+      | 4.1 Country code + Location Name | AD       |
+      | 4.8 Method of Payment            | E        |
+      | 4.13 Valuation Indicators        | 0000     |
+      | 4.14 Item Price/Amount           | 90500000 |
+      | 4.14 Item Price/Currency Unit    | GBP      |
+      | 4.15 Exchange Rate               | 1.25     |
+      | 4.16 Valuation Method            | 1        |
+      | 4.17 Preference                  | 100      |
     And I click on Submit
     And the submitted XML should include a Declaration with the following TradeTerms
       | Element       | Value |
