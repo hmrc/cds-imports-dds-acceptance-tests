@@ -82,27 +82,27 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 3.1 Exporter - Name                    | Transport du Tinfoil    |
       | 3.1 Exporter - Street and Number       | 1 Rue Aluminum          |
       | 3.1 Exporter - City                    | Metalville              |
-      | 3.1 Exporter - Country                 | FR                      |
+      | 3.1 Exporter - Country Code            | FR                      |
       | 3.1 Exporter - Postcode                | 07030                   |
       | 3.2 Exporter - EORI                    | FR12345678              |
       | 3.15 Importer - Name                   | Foil Solutions          |
       | 3.15 Importer - Street and Number      | Aluminium Way           |
       | 3.15 Importer - City                   | Metalton                |
-      | 3.15 Importer - Country                | UK                      |
+      | 3.15 Importer - Country Code           | UK                      |
       | 3.15 Importer - Postcode               | ME7 4LL                 |
       | 3.16 Importer - EORI                   | GB87654321              |
       | 3.18 Declarant - EORI                  | GB15263748              |
       | 3.24 Seller - Name                     | Tinfoil Sans Frontieres |
       | 3.24 Seller - Street and Number        | 123 les Champs Insulees |
       | 3.24 Seller - City                     | Troyes                  |
-      | 3.24 Seller - Country                  | FR                      |
+      | 3.24 Seller - Country Code             | FR                      |
       | 3.24 Seller - Postcode                 | 01414                   |
       | 3.24 Seller - Phone number             | 003344556677            |
       | 3.25 Seller - EORI                     | FR84736251              |
       | 3.26 Buyer - Name                      | Tinfoil R Us            |
       | 3.26 Buyer - Street and Number         | 12 Alcan Boulevard      |
       | 3.26 Buyer - City                      | Sheffield               |
-      | 3.26 Buyer - Country                   | UK                      |
+      | 3.26 Buyer - Country Code              | UK                      |
       | 3.26 Buyer - Postcode                  | S1 1VA                  |
       | 3.26 Buyer - Phone number              | 00441234567890          |
       | 3.27 Buyer - EORI                      | GB45362718              |
