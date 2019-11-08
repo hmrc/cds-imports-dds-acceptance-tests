@@ -4,10 +4,10 @@ Feature: Submit import declarations to the declarations API via the single page 
   Background:
     Given the mongo database is empty
     And our application is registered with the DEC-API
+    And I am signed in as a registered user
+    And the Single Page Declaration feature is enabled
 
   Scenario: Sections 1 and 2 answers are mapped to the correct XML elements
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                              | Value             |
@@ -131,37 +131,36 @@ Feature: Submit import declarations to the declarations API via the single page 
       | LPCOExemptionCode       | AE               |
       | Name                    | DocumentName4    |
 
+
   @wip
   Scenario: Section 3 answers are mapped to the correct XML elements
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                             | Value                   |
       | 3.1 Exporter - Name                    | Transport du Tinfoil    |
       | 3.1 Exporter - Street and Number       | 1 Rue Aluminum          |
       | 3.1 Exporter - City                    | Metalville              |
-      | 3.1 Exporter - Country                 | FR                      |
+      | 3.1 Exporter - Country Code            | FR                      |
       | 3.1 Exporter - Postcode                | 07030                   |
       | 3.2 Exporter - EORI                    | FR12345678              |
       | 3.15 Importer - Name                   | Foil Solutions          |
       | 3.15 Importer - Street and Number      | Aluminium Way           |
       | 3.15 Importer - City                   | Metalton                |
-      | 3.15 Importer - Country                | UK                      |
+      | 3.15 Importer - Country Code           | UK                      |
       | 3.15 Importer - Postcode               | ME7 4LL                 |
       | 3.16 Importer - EORI                   | GB87654321              |
       | 3.18 Declarant - EORI                  | GB15263748              |
       | 3.24 Seller - Name                     | Tinfoil Sans Frontieres |
       | 3.24 Seller - Street and Number        | 123 les Champs Insulees |
       | 3.24 Seller - City                     | Troyes                  |
-      | 3.24 Seller - Country                  | FR                      |
+      | 3.24 Seller - Country Code             | FR                      |
       | 3.24 Seller - Postcode                 | 01414                   |
       | 3.24 Seller - Phone number             | 003344556677            |
       | 3.25 Seller - EORI                     | FR84736251              |
       | 3.26 Buyer - Name                      | Tinfoil R Us            |
       | 3.26 Buyer - Street and Number         | 12 Alcan Boulevard      |
       | 3.26 Buyer - City                      | Sheffield               |
-      | 3.26 Buyer - Country                   | UK                      |
+      | 3.26 Buyer - Country Code              | UK                      |
       | 3.26 Buyer - Postcode                  | S1 1VA                  |
       | 3.26 Buyer - Phone number              | 00441234567890          |
       | 3.27 Buyer - EORI                      | GB45362718              |
@@ -220,20 +219,19 @@ Feature: Submit import declarations to the declarations API via the single page 
       | RoleCode | VAT      |
   @wip
   Scenario: Section 4 answers are mapped to the correct XML elements
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | 4.1 INCOTERM code                 | CFR       |
-      | 4.1 UN/LOCODE code                | GBDVR     |
-      | 4.1 Country code + Location Name  | AD        |
-      | 4.8 Method of Payment             | E         |
-      | 4.13 Valuation Indicators         | 0000      |
-      | 4.14 Item Price/Amount            | 90500000  |
-      | 4.14 Item Price/Currency Unit     | GBP       |
-      | 4.15 Exchange Rate                | 1.25      |
-      | 4.16 Valuation Method             | 1         |
-      | 4.17 Preference                   | 100       |
+      | Field Name                       | Value    |
+      | 4.1 INCOTERM code                | CFR      |
+      | 4.1 UN/LOCODE code               | GBDVR    |
+      | 4.1 Country code + Location Name | AD       |
+      | 4.8 Method of Payment            | E        |
+      | 4.13 Valuation Indicators        | 0000     |
+      | 4.14 Item Price/Amount           | 90500000 |
+      | 4.14 Item Price/Currency Unit    | GBP      |
+      | 4.15 Exchange Rate               | 1.25     |
+      | 4.16 Valuation Method            | 1        |
+      | 4.17 Preference                  | 100      |
     And I click on Submit
     And the submitted XML should include a Declaration with the following TradeTerms
       | Element       | Value |
@@ -252,7 +250,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following InvoiceLine
       | Element          | Value    |
       | ItemChargeAmount | 90500000 |
-    And the CurrencyID attribute of node ItemChargeAmount should be GBP
+    And the currencyID attribute of node ItemChargeAmount should be GBP
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
       | Element          | Value    |
       | MethodCode       | 1        |
@@ -261,8 +259,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | DutyRegimeCode   | 100      |
 
   Scenario: Section 1 default / auto-populated values
-    Given I am signed in as a registered user
-    And the Single Page Declaration feature is enabled
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                   | Value |

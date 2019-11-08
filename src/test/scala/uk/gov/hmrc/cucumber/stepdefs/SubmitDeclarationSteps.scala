@@ -10,7 +10,7 @@ import uk.gov.hmrc.utils.WSClient
 import scala.collection.JavaConverters._
 import scala.concurrent.Await
 import scala.concurrent.duration._
-import scala.xml.{NodeSeq, XML}
+import scala.xml.{NodeSeq, XML, Node}
 
 
 class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
@@ -127,7 +127,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   And("""^the (.*) attribute of node (.*) should be (.*)$""") { (attributeName: String, expectedSubElementName: String, expectedValue: String) =>
-    val actualValue = (lastSubmittedXML() \\ expectedSubElementName \ s"@$attributeName").toString()
+    val actualValue = (lastSubmittedXML() \\ expectedSubElementName).head.attribute(attributeName).get.head.text
     actualValue should be(expectedValue) withClue s"$attributeName attribute is not present in $expectedSubElementName node"
   }
 
