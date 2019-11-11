@@ -263,7 +263,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element       | Value |
       | ConditionCode | CFR   |
       | LocationID    | GBDVR |
-      | LocationName  | AD    |
+      | LocationName  |       |
     And the submitted XML should include a Declaration with the following CurrencyExchange
       | Element     | Value |
       | RateNumeric | 1.25  |
