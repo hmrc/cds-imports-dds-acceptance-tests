@@ -124,7 +124,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Consignor
+    And the submitted XML should include a Declaration with the following Exporter
       | Element             | Value                |
       | Name                | Transport du Tinfoil |
       | Address/Line        | 1 Rue Aluminum       |
