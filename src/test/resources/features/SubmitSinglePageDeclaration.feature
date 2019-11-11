@@ -250,7 +250,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Field Name                       | Value    |
       | 4.1 INCOTERM code                | CFR      |
       | 4.1 UN/LOCODE code               | GBDVR    |
-      | 4.1 Country code + Location Name | AD       |
+      | 4.1 Country code + Location Name |          |
       | 4.8 Method of Payment            | E        |
       | 4.13 Valuation Indicators        | 0000     |
       | 4.14 Item Price/Amount           | 90500000 |
@@ -263,7 +263,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element       | Value |
       | ConditionCode | CFR   |
       | LocationID    | GBDVR |
-      | LocationName  |       |
     And the submitted XML should include a Declaration with the following CurrencyExchange
       | Element     | Value |
       | RateNumeric | 1.25  |
