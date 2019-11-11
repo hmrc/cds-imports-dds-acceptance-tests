@@ -32,18 +32,18 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.3 Additional Document Category Code 2                                 | C                 |
       | 2.3 Additional Document Type Code 2                                     | 514               |
       | 2.3 Additional Document Identifier (include TSP authorisation number) 2 | GBEIR201909014000 |
-      | 2.3 Additional Document Status 2                                        | AE                |
-      | 2.3 Additional Document Status Reason 2                                 | DocumentName2     |
+      | 2.3 Additional Document Status 2                                        |                   |
+      | 2.3 Additional Document Status Reason 2                                 |                   |
       | 2.3 Additional Document Category Code 3                                 | C                 |
       | 2.3 Additional Document Type Code 3                                     | 506               |
       | 2.3 Additional Document Identifier (include TSP authorisation number) 3 | GBDPO1909241      |
-      | 2.3 Additional Document Status 3                                        | AC                |
-      | 2.3 Additional Document Status Reason 3                                 | DocumentName3     |
+      | 2.3 Additional Document Status 3                                        |                   |
+      | 2.3 Additional Document Status Reason 3                                 |                   |
       | 2.3 Additional Document Category Code 4                                 | I                 |
       | 2.3 Additional Document Type Code 4                                     | 004               |
       | 2.3 Additional Document Identifier (include TSP authorisation number) 4 | GBCPI000001-0001  |
       | 2.3 Additional Document Status 4                                        | AE                |
-      | 2.3 Additional Document Status Reason 4                                 | DocumentName4     |
+      | 2.3 Additional Document Status Reason 4                                 |                   |
       | 2.5 LRN                                                                 | Test1234          |
       | 2.6 Deferred Payment ID 1                                               | 1909241           |
       | 2.6 Deferred Payment Category 1                                         | 1                 |
@@ -51,12 +51,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.6 Deferred Payment ID 2                                               | 1909242           |
       | 2.6 Deferred Payment Category 2                                         | 1                 |
       | 2.6 Deferred Payment Type 2                                             | DAN               |
-      | 2.6 Deferred Payment ID 3                                               | 1909243           |
-      | 2.6 Deferred Payment Category 3                                         | 1                 |
-      | 2.6 Deferred Payment Type 3                                             | DAN               |
-      | 2.6 Deferred Payment ID 4                                               | 1909244           |
-      | 2.6 Deferred Payment Category 4                                         | 1                 |
-      | 2.6 Deferred Payment Type 4                                             | DAN               |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -74,16 +68,6 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a Declaration with the following AdditionalDocument
       | Element               | Value   |
       | ID                    | 1909242 |
-      | CategoryCode          | 1       |
-      | TypeCode              | DAN     |
-    And the submitted XML should include a Declaration with the following AdditionalDocument
-      | Element               | Value   |
-      | ID                    | 1909243 |
-      | CategoryCode          | 1       |
-      | TypeCode              | DAN     |
-    And the submitted XML should include a Declaration with the following AdditionalDocument
-      | Element               | Value   |
-      | ID                    | 1909244 |
       | CategoryCode          | 1       |
       | TypeCode              | DAN     |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following data elements
@@ -114,22 +98,17 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CategoryCode            | C                 |
       | TypeCode                | 514               |
       | ID                      | GBEIR201909014000 |
-      | LPCOExemptionCode       | AE                |
-      | Name                    | DocumentName2     |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
       | Element                 | Value         |
       | CategoryCode            | C             |
       | TypeCode                | 506           |
       | ID                      | GBDPO1909241  |
-      | LPCOExemptionCode       | AC            |
-      | Name                    | DocumentName3 |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
       | Element                 | Value            |
       | CategoryCode            | I                |
       | TypeCode                | 004              |
       | ID                      | GBCPI000001-0001 |
       | LPCOExemptionCode       | AE               |
-      | Name                    | DocumentName4    |
 
 
   @wip
