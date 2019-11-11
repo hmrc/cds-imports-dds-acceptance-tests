@@ -110,8 +110,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                      | GBCPI000001-0001 |
       | LPCOExemptionCode       | AE               |
 
-
-  @wip
   Scenario: Section 3 Exporter fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
@@ -135,7 +133,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Address/PostcodeID  | 07030                |
       | ID                  | FR12345678           |
 
-  @wip
   Scenario: Section 3 Declarant fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
