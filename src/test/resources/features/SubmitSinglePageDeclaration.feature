@@ -185,7 +185,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Declarant/ID | GB15263748 |
 
   Scenario: Section 3 Importer fields are mapped to the correct XML elements
-    Given PENDING
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                             | Value                   |
@@ -199,7 +198,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Importer
+    And the submitted XML should include a GoodsShipment with the following Importer
       | Element             | Value          |
       | Name                | Foil Solutions |
       | Address/Line        | Aluminium Way  |
