@@ -7,7 +7,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     And I am signed in as a registered user
     And the Single Page Declaration feature is enabled
 
-  Scenario: Sections 1 and 2 answers are mapped to the correct XML elements
+  Scenario: Sections 1 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                              | Value             |
@@ -18,12 +18,88 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 1.10 Requested Procedure Code                                           | 66                |
       | 1.10 Previous Procedure Code                                            | 99                |
       | 1.11 Additional Procedure Code (000 or C07)                             | C07               |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a Declaration with the following data elements
+      | Element               | Value    |
+      | TypeCode              | DTA      |
+      | GoodsItemQuantity     | 42       |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following data elements
+      | Element                          | Value |
+      | SequenceNumeric                  | 17    |
+      | GovernmentProcedure/CurrentCode  | 66    |
+      | GovernmentProcedure/CurrentCode  | C07   |
+      | GovernmentProcedure/PreviousCode | 99    |
+
+  Scenario: Sections 2 Previous document answers are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                                              | Value             |
       | 2.1 Previous Document Category                                          | Y                 |
       | 2.1 Previous Document Type                                              | DCR               |
       | 2.1 Previous Document Reference                                         | 9GB201909014000   |
       | 2.1 Previous Document Goods Item Identifier                             | 1                 |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Y               |
+      | TypeCode     | DCR             |
+      | ID           | 9GB201909014000 |
+      | LineNumeric  | 1               |
+
+  Scenario: Sections 2 Deferred payment answers are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                                              | Value             |
+      | 2.6 Deferred Payment ID 1                                               | 1909241           |
+      | 2.6 Deferred Payment Category 1                                         | 1                 |
+      | 2.6 Deferred Payment Type 1                                             | DAN               |
+      | 2.6 Deferred Payment ID 2                                               | 1909242           |
+      | 2.6 Deferred Payment Category 2                                         | 1                 |
+      | 2.6 Deferred Payment Type 2                                             | DAN               |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a Declaration with the following AdditionalDocument
+      | Element               | Value   |
+      | ID                    | 1909241 |
+      | CategoryCode          | 1       |
+      | TypeCode              | DAN     |
+    And the submitted XML should include a Declaration with the following AdditionalDocument
+      | Element               | Value   |
+      | ID                    | 1909242 |
+      | CategoryCode          | 1       |
+      | TypeCode              | DAN     |
+
+  Scenario: Sections 2 Additional Information and LRN answers are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                                              | Value             |
       | 2.2 Additional Information Code                                         | 00500             |
       | 2.2 Additional Information Description                                  | IMPORTER          |
+      | 2.5 LRN                                                                 | Test1234          |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a Declaration with the following data elements
+      | Element               | Value    |
+      | FunctionalReferenceID | Test1234 |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | 00500    |
+      | StatementDescription | IMPORTER |
+
+  Scenario: Sections 2 Additional Document answers are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                                              | Value             |
       | 2.3 Additional Document Category Code 1                                 | N                 |
       | 2.3 Additional Document Type Code 1                                     | 935               |
       | 2.3 Additional Document Identifier (include TSP authorisation number) 1 | 12345/30.09.2019  |
@@ -44,48 +120,10 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.3 Additional Document Identifier (include TSP authorisation number) 4 | GBCPI000001-0001  |
       | 2.3 Additional Document Status 4                                        | AE                |
       | 2.3 Additional Document Status Reason 4                                 |                   |
-      | 2.5 LRN                                                                 | Test1234          |
-      | 2.6 Deferred Payment ID 1                                               | 1909241           |
-      | 2.6 Deferred Payment Category 1                                         | 1                 |
-      | 2.6 Deferred Payment Type 1                                             | DAN               |
-      | 2.6 Deferred Payment ID 2                                               | 1909242           |
-      | 2.6 Deferred Payment Category 2                                         | 1                 |
-      | 2.6 Deferred Payment Type 2                                             | DAN               |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And the submitted XML should include a Declaration with the following data elements
-      | Element               | Value    |
-      | FunctionalReferenceID | Test1234 |
-      | TypeCode              | DTA      |
-      | GoodsItemQuantity     | 42       |
-    And the submitted XML should include a Declaration with the following AdditionalDocument
-      | Element               | Value   |
-      | ID                    | 1909241 |
-      | CategoryCode          | 1       |
-      | TypeCode              | DAN     |
-    And the submitted XML should include a Declaration with the following AdditionalDocument
-      | Element               | Value   |
-      | ID                    | 1909242 |
-      | CategoryCode          | 1       |
-      | TypeCode              | DAN     |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following data elements
-      | Element                          | Value |
-      | SequenceNumeric                  | 17    |
-      | GovernmentProcedure/CurrentCode  | 66    |
-      | GovernmentProcedure/CurrentCode  | C07   |
-      | GovernmentProcedure/PreviousCode | 99    |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
-      | Element      | Value           |
-      | CategoryCode | Y               |
-      | TypeCode     | DCR             |
-      | ID           | 9GB201909014000 |
-      | LineNumeric  | 1               |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
-      | Element              | Value    |
-      | StatementCode        | 00500    |
-      | StatementDescription | IMPORTER |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
       | Element                 | Value            |
       | CategoryCode            | N                |
