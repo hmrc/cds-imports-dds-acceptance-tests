@@ -41,6 +41,26 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.1 Previous Document Type                                              | DCR               |
       | 2.1 Previous Document Reference                                         | 9GB201909014000   |
       | 2.1 Previous Document Goods Item Identifier                             | 1                 |
+      | 2.1 Previous Document Category                                          | Y                 |
+      | 2.1 Previous Document Type                                              | CLE               |
+      | 2.1 Previous Document Reference                                         | 20191101          |
+      | 2.1 Previous Document Goods Item Identifier                             | 1                 |
+      | 2.1 Previous Document Category                                          | Z                 |
+      | 2.1 Previous Document Type                                              | ZZZ               |
+      | 2.1 Previous Document Reference                                         | 20191103          |
+      | 2.1 Previous Document Goods Item Identifier                             | 1                 |
+      | 2.1 Previous Document Category                                          | Z                 |
+      | 2.1 Previous Document Type                                              | 235               |
+      | 2.1 Previous Document Reference                                         | 9GB201909014002   |
+      | 2.1 Previous Document Goods Item Identifier                             | 1                 |
+      | 2.1 Previous Document Category                                          | Z                 |
+      | 2.1 Previous Document Type                                              | ZZZ               |
+      | 2.1 Previous Document Reference                                         | 9GB201909014003   |
+      | 2.1 Previous Document Goods Item Identifier                             | 1                 |
+      | 2.1 Previous Document Category                                          | Z                 |
+      | 2.1 Previous Document Type                                              | 270               |
+      | 2.1 Previous Document Reference                                         | 9GB201909014004   |
+      | 2.1 Previous Document Goods Item Identifier                             | 1                 |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -50,6 +70,36 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CategoryCode | Y               |
       | TypeCode     | DCR             |
       | ID           | 9GB201909014000 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Y               |
+      | TypeCode     | CLE             |
+      | ID           | 20191101        |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | ZZZ             |
+      | ID           | 20191103        |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | 235             |
+      | ID           | 9GB201909014002 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | ZZZ             |
+      | ID           | 9GB201909014003 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | 270             |
+      | ID           | 9GB201909014004 |
       | LineNumeric  | 1               |
 
   Scenario: Sections 2 Deferred payment answers are mapped to the correct XML elements
