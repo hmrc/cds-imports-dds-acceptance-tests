@@ -77,7 +77,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CategoryCode          | 1       |
       | TypeCode              | DAN     |
 
-  @wip
   Scenario: Sections 2 Additional Information and LRN answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
@@ -87,15 +86,15 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.2 Item Additional Information Code 1                                  | 00500             |
       | 2.2 Item Additional Information Description 1                           | IMPORTER          |
       | 2.2 Item Additional Information Code 2                                  | 00501             |
-      | 2.2 Item Additional Information Description 2                           | IMPORTER          |
+      | 2.2 Item Additional Information Description 2                           | EXPORTER          |
       | 2.2 Item Additional Information Code 3                                  | 00502             |
-      | 2.2 Item Additional Information Description 3                           | IMPORTER          |
+      | 2.2 Item Additional Information Description 3                           | HOTEL PORTER      |
       | 2.2 Item Additional Information Code 4                                  | 00503             |
-      | 2.2 Item Additional Information Description 4                           | IMPORTER          |
+      | 2.2 Item Additional Information Description 4                           | COLE PORTER       |
       | 2.2 Item Additional Information Code 5                                  | 00504             |
-      | 2.2 Item Additional Information Description 5                           | IMPORTER          |
+      | 2.2 Item Additional Information Description 5                           | PINT OF PORTER    |
       | 2.2 Item Additional Information Code 6                                  | 00505             |
-      | 2.2 Item Additional Information Description 6                           | IMPORTER          |
+      | 2.2 Item Additional Information Description 6                           | PRET A PORTER     |
       | 2.5 LRN                                                                 | Test1234          |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
@@ -115,23 +114,23 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
       | Element              | Value    |
       | StatementCode        | 00501    |
-      | StatementDescription | IMPORTER |
+      | StatementDescription | EXPORTER |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
-      | Element              | Value    |
-      | StatementCode        | 00502    |
-      | StatementDescription | IMPORTER |
+      | Element              | Value        |
+      | StatementCode        | 00502        |
+      | StatementDescription | HOTEL PORTER |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
-      | Element              | Value    |
-      | StatementCode        | 00503    |
-      | StatementDescription | IMPORTER |
+      | Element              | Value       |
+      | StatementCode        | 00503       |
+      | StatementDescription | COLE PORTER |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
-      | Element              | Value    |
-      | StatementCode        | 00504    |
-      | StatementDescription | IMPORTER |
+      | Element              | Value          |
+      | StatementCode        | 00504          |
+      | StatementDescription | PINT OF PORTER |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
-      | Element              | Value    |
-      | StatementCode        | 00505    |
-      | StatementDescription | IMPORTER |
+      | Element              | Value         |
+      | StatementCode        | 00505         |
+      | StatementDescription | PRET A PORTER |
 
   Scenario: Sections 2 Additional Document answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
