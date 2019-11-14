@@ -39,28 +39,28 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Field Name                                                               | Value             |
       | 2.1 Previous Document Category 1                                         | Y                 |
       | 2.1 Previous Document Type 1                                             | DCR               |
-      | 2.1 Previous Document Reference 1                                        | 9GB201909014000   |
-      | 2.1 Previous Document Goods Item Identifier 1                            | 1                 |
+      | 2.1 Previous Document Reference 1                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 1                            | 9GB201909014000   |
       | 2.1 Previous Document Category 2                                         | Y                 |
       | 2.1 Previous Document Type 2                                             | CLE               |
-      | 2.1 Previous Document Reference 2                                        | 20191101          |
-      | 2.1 Previous Document Goods Item Identifier 2                            | 1                 |
+      | 2.1 Previous Document Reference 2                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 2                            | 20191101          |
       | 2.1 Previous Document Category 3                                         | Z                 |
       | 2.1 Previous Document Type 3                                             | ZZZ               |
-      | 2.1 Previous Document Reference 3                                        | 20191103          |
-      | 2.1 Previous Document Goods Item Identifier 3                            | 1                 |
+      | 2.1 Previous Document Reference 3                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 3                            | 20191103          |
       | 2.1 Previous Document Category 4                                         | Z                 |
       | 2.1 Previous Document Type 4                                             | 235               |
-      | 2.1 Previous Document Reference 4                                        | 9GB201909014002   |
-      | 2.1 Previous Document Goods Item Identifier 4                            | 1                 |
+      | 2.1 Previous Document Reference 4                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 4                            | 9GB201909014002   |
       | 2.1 Previous Document Category 5                                         | Z                 |
       | 2.1 Previous Document Type 5                                             | ZZZ               |
-      | 2.1 Previous Document Reference 5                                        | 9GB201909014003   |
-      | 2.1 Previous Document Goods Item Identifier 5                            | 1                 |
+      | 2.1 Previous Document Reference 5                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 5                            | 9GB201909014003   |
       | 2.1 Previous Document Category 6                                         | Z                 |
       | 2.1 Previous Document Type 6                                             | 270               |
-      | 2.1 Previous Document Reference 6                                        | 9GB201909014004   |
-      | 2.1 Previous Document Goods Item Identifier 6                            | 1                 |
+      | 2.1 Previous Document Reference 6                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 6                            | 9GB201909014004   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
