@@ -81,8 +81,20 @@ Feature: Submit import declarations to the declarations API via the single page 
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                              | Value             |
-      | 2.2 Additional Information Code                                         | 00500             |
-      | 2.2 Additional Information Description                                  | IMPORTER          |
+      | 2.2 Header Additional Information Code                                  | TSP01             |
+      | 2.2 Header Additional Information Description                           | TSP               |
+      | 2.2 Item Additional Information Code 1                                  | 00500             |
+      | 2.2 Item Additional Information Description 1                           | IMPORTER          |
+      | 2.2 Item Additional Information Code 2                                  | 00501             |
+      | 2.2 Item Additional Information Description 2                           | IMPORTER          |
+      | 2.2 Item Additional Information Code 3                                  | 00502             |
+      | 2.2 Item Additional Information Description 3                           | IMPORTER          |
+      | 2.2 Item Additional Information Code 4                                  | 00503             |
+      | 2.2 Item Additional Information Description 4                           | IMPORTER          |
+      | 2.2 Item Additional Information Code 5                                  | 00504             |
+      | 2.2 Item Additional Information Description 5                           | IMPORTER          |
+      | 2.2 Item Additional Information Code 6                                  | 00505             |
+      | 2.2 Item Additional Information Description 6                           | IMPORTER          |
       | 2.5 LRN                                                                 | Test1234          |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
@@ -91,9 +103,33 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a Declaration with the following data elements
       | Element               | Value    |
       | FunctionalReferenceID | Test1234 |
+    And the submitted XML should include a Declaration with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | TSP01    |
+      | StatementDescription | TSP      |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
       | Element              | Value    |
       | StatementCode        | 00500    |
+      | StatementDescription | IMPORTER |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | 00501    |
+      | StatementDescription | IMPORTER |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | 00502    |
+      | StatementDescription | IMPORTER |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | 00503    |
+      | StatementDescription | IMPORTER |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | 00504    |
+      | StatementDescription | IMPORTER |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
+      | Element              | Value    |
+      | StatementCode        | 00505    |
       | StatementDescription | IMPORTER |
 
   Scenario: Sections 2 Additional Document answers are mapped to the correct XML elements
