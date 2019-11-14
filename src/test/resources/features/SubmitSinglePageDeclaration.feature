@@ -77,6 +77,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CategoryCode          | 1       |
       | TypeCode              | DAN     |
 
+  @wip
   Scenario: Sections 2 Additional Information and LRN answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
@@ -356,35 +357,3 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element          | Value    |
       | DutyRegimeCode   | 100      |
 
-  Scenario: Section 1 default / auto-populated values
-    When I navigate to the Simple Declaration page
-    And I enter the following data
-      | Field Name                                   | Value |
-      | 1.11 Additional Procedure Code (000 or C07)  | C07   |
-    And I click on Submit
-    Then I should see submitted page with the following response details for valid data
-      | Status |
-      | 202    |
-    And the submitted XML should include the following data elements
-      | Path                                                                                           | Value            |
-      | Declaration/TypeCode                                                                           | IMZ              |
-      | Declaration/GoodsItemQuantity                                                                  | 1                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/SequenceNumeric                            | 1                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode            | 40               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/CurrentCode            | C07              |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/GovernmentProcedure/PreviousCode           | 00               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/CategoryCode              | Y                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/TypeCode                  | DCR              |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/ID                        | 9GB201909014000  |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/PreviousDocument/LineNumeric               | 1                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalInformation/StatementCode        | 00500            |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalInformation/StatementDescription | IMPORTER         |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/CategoryCode            | N                |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/TypeCode                | 935              |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/ID                      | 12345/30.09.2019 |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/LPCOExemptionCode       | AC               |
-      | Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/Name                    | DocumentName1    |
-      | Declaration/FunctionalReferenceID                                                              | Test1234         |
-      | Declaration/AdditionalDocument/ID                                                              | 1909241          |
-      | Declaration/AdditionalDocument/CategoryCode                                                    | 1                |
-      | Declaration/AdditionalDocument/TypeCode                                                        | DAN              |
