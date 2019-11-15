@@ -34,14 +34,33 @@ Feature: Submit import declarations to the declarations API via the single page 
       | GovernmentProcedure/PreviousCode | 99    |
 
   Scenario: Sections 2 Previous document answers are mapped to the correct XML elements
-    Given PENDING rewrite for multiple previous documents
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                                              | Value             |
-      | 2.1 Previous Document Category                                          | Y                 |
-      | 2.1 Previous Document Type                                              | DCR               |
-      | 2.1 Previous Document Reference                                         | 9GB201909014000   |
-      | 2.1 Previous Document Goods Item Identifier                             | 1                 |
+      | Field Name                                                               | Value             |
+      | 2.1 Previous Document Category 1                                         | Y                 |
+      | 2.1 Previous Document Type 1                                             | DCR               |
+      | 2.1 Previous Document Reference 1                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 1                            | 9GB201909014000   |
+      | 2.1 Previous Document Category 2                                         | Y                 |
+      | 2.1 Previous Document Type 2                                             | CLE               |
+      | 2.1 Previous Document Reference 2                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 2                            | 20191101          |
+      | 2.1 Previous Document Category 3                                         | Z                 |
+      | 2.1 Previous Document Type 3                                             | ZZZ               |
+      | 2.1 Previous Document Reference 3                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 3                            | 20191103          |
+      | 2.1 Previous Document Category 4                                         | Z                 |
+      | 2.1 Previous Document Type 4                                             | 235               |
+      | 2.1 Previous Document Reference 4                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 4                            | 9GB201909014002   |
+      | 2.1 Previous Document Category 5                                         | Z                 |
+      | 2.1 Previous Document Type 5                                             | ZZZ               |
+      | 2.1 Previous Document Reference 5                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 5                            | 9GB201909014003   |
+      | 2.1 Previous Document Category 6                                         | Z                 |
+      | 2.1 Previous Document Type 6                                             | 270               |
+      | 2.1 Previous Document Reference 6                                        | 1                 |
+      | 2.1 Previous Document Goods Item Identifier 6                            | 9GB201909014004   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -51,6 +70,36 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CategoryCode | Y               |
       | TypeCode     | DCR             |
       | ID           | 9GB201909014000 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Y               |
+      | TypeCode     | CLE             |
+      | ID           | 20191101        |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | ZZZ             |
+      | ID           | 20191103        |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | 235             |
+      | ID           | 9GB201909014002 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | ZZZ             |
+      | ID           | 9GB201909014003 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | 270             |
+      | ID           | 9GB201909014004 |
       | LineNumeric  | 1               |
 
   Scenario: Sections 2 Deferred payment answers are mapped to the correct XML elements
