@@ -34,6 +34,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | GovernmentProcedure/PreviousCode | 99    |
 
   Scenario: Sections 2 Previous document answers are mapped to the correct XML elements
+    Given PENDING rewrite for multiple previous documents
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                              | Value             |
