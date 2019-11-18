@@ -1,10 +1,10 @@
-@acceptance @zap
+@acceptance
 Feature: Receive notifications from DMS
 
   Background:
     Given the mongo database is empty
     And our application is registered with the DEC-API
-
+  @zap
   Scenario: Receive and display Accepted notification from DMS
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page

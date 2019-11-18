@@ -1,4 +1,4 @@
-@acceptance @zap
+@acceptance
 Feature: Submit import declarations to the declarations API via the single page form
 
   Background:
@@ -6,7 +6,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     And our application is registered with the DEC-API
     And I am signed in as a registered user
     And the Single Page Declaration feature is enabled
-
+  @zap
   Scenario: Sections 1 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
