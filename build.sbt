@@ -23,7 +23,7 @@ libraryDependencies ++= Seq(
   "info.cukes"                 %  "cucumber-picocontainer"  % "1.2.5" % "test",
   "junit"                      %  "junit"                   % "4.12"  % "test",
   "com.novocode"               %  "junit-interface"         % "0.11"  % "test",
-  "uk.gov.hmrc"                %% "zap-automation"          % "2.1.0"  % "test",
+  "uk.gov.hmrc"                %% "zap-automation"          % "2.4.0"  % "test",
   "com.typesafe"               %  "config"                  % "1.3.2",
   "net.lightbody.bmp"          % "browsermob-core"          % "2.1.5"
   )
