@@ -320,7 +320,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                       | FR84736251              |
 
   Scenario: Section 3 Buyer fields are mapped to the correct XML elements
-    Given PENDING
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                             | Value                   |
@@ -329,20 +328,20 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 3.26 Buyer - City                      | Sheffield               |
       | 3.26 Buyer - Country Code              | UK                      |
       | 3.26 Buyer - Postcode                  | S1 1VA                  |
-      | 3.26 Buyer - Phone number              | 00441234567890          |
+      | 3.26 Buyer - Phone Number              | 00441234567890          |
       | 3.27 Buyer - EORI                      | GB45362718              |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Buyer
+    And the submitted XML should include a GoodsShipment with the following Buyer
       | Element                  | Value              |
       | Name                     | Tinfoil R Us       |
       | Address/Line             | 12 Alcan Boulevard |
       | Address/CityName         | Sheffield          |
       | Address/CountryCode      | UK                 |
       | Address/PostcodeID       | S1 1VA             |
-      | Contact/Communication/ID | 00441234567890     |
+      | Communication/ID         | 00441234567890     |
       | ID                       | GB45362718         |
 
   Scenario: Section 3 miscellaneous fields are mapped to the correct XML elements
