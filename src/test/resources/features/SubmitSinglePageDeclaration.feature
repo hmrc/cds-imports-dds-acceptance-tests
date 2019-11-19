@@ -367,15 +367,19 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Communication/ID         | 00441234567890     |
       | ID                       | GB45362718         |
 
+  @wip
   Scenario: Section 3 miscellaneous fields are mapped to the correct XML elements
-    Given PENDING
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value                   |
-      | 3.39 Authorisation holder - identifier | GB62518473              |
-      | 3.39 Authorisation holder - type code  | OK4U                    |
-      | 3.40 VAT Number (or TSPVAT)            | 99887766                |
-      | 3.40 Role Code                         | VAT                     |
+      | Field Name                               | Value                   |
+      | 3.39 Authorisation holder - identifier 1 | GB62518473              |
+      | 3.39 Authorisation holder - type code  1 | OK4U                    |
+      | 3.39 Authorisation holder - identifier 2 | GB98229822              |
+      | 3.39 Authorisation holder - type code  2 | YAY1                    |
+      | 3.40 VAT Number (or TSPVAT) 1            | 99887766                |
+      | 3.40 Role Code 1                         | VAT                     |
+      | 3.40 VAT Number (or TSPVAT) 2            | 99997777                |
+      | 3.40 Role Code 2                         | RAT                     |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -384,10 +388,18 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element      | Value      |
       | ID           | GB62518473 |
       | CategoryCode | OK4U       |
+    And the submitted XML should include a Declaration with the following AuthorisationHolder
+      | Element      | Value      |
+      | ID           | GB98229822 |
+      | CategoryCode | YAY1       |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following DomesticDutyTaxParty
       | Element  | Value    |
       | ID       | 99887766 |
       | RoleCode | VAT      |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following DomesticDutyTaxParty
+      | Element  | Value    |
+      | ID       | 99997777 |
+      | RoleCode | RAT      |
 
   Scenario: Section 4 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
