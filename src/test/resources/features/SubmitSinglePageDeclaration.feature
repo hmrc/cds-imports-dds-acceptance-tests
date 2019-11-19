@@ -183,6 +183,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | StatementDescription | PRET A PORTER |
 
   Scenario: Sections 2 Additional Document answers are mapped to the correct XML elements
+    Given PENDING
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                              | Value             |
@@ -201,11 +202,21 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.3 Additional Document Identifier (include TSP authorisation number) 3 | GBDPO1909241      |
       | 2.3 Additional Document Status 3                                        |                   |
       | 2.3 Additional Document Status Reason 3                                 |                   |
-      | 2.3 Additional Document Category Code 4                                 | I                 |
-      | 2.3 Additional Document Type Code 4                                     | 004               |
-      | 2.3 Additional Document Identifier (include TSP authorisation number) 4 | GBCPI000001-0001  |
-      | 2.3 Additional Document Status 4                                        | AE                |
+      | 2.3 Additional Document Category Code 4                                 | N                 |
+      | 2.3 Additional Document Type Code 4                                     | 935               |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 4 | 12345/30.07.2019  |
+      | 2.3 Additional Document Status 4                                        | AC                |
       | 2.3 Additional Document Status Reason 4                                 |                   |
+      | 2.3 Additional Document Category Code 5                                 | N                 |
+      | 2.3 Additional Document Type Code 5                                     | 935               |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 5 | 12345/30.08.2019  |
+      | 2.3 Additional Document Status 5                                        | AC                |
+      | 2.3 Additional Document Status Reason 5                                 |                   |
+      | 2.3 Additional Document Category Code 6                                 | N                 |
+      | 2.3 Additional Document Type Code 6                                     | 935               |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 6 | 12345/30.09.2019  |
+      | 2.3 Additional Document Status 6                                        | AC                |
+      | 2.3 Additional Document Status Reason 6                                 |                   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -229,10 +240,22 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                      | GBDPO1909241  |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
       | Element                 | Value            |
-      | CategoryCode            | I                |
-      | TypeCode                | 004              |
-      | ID                      | GBCPI000001-0001 |
-      | LPCOExemptionCode       | AE               |
+      | CategoryCode            | N                |
+      | TypeCode                | 935              |
+      | ID                      | 12345/30.07.2019 |
+      | LPCOExemptionCode       | AC               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+      | Element                 | Value            |
+      | CategoryCode            | N                |
+      | TypeCode                | 935              |
+      | ID                      | 12345/30.08.2019 |
+      | LPCOExemptionCode       | AC               |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+      | Element                 | Value            |
+      | CategoryCode            | N                |
+      | TypeCode                | 935              |
+      | ID                      | 12345/30.09.2019 |
+      | LPCOExemptionCode       | AC               |
 
   Scenario: Section 3 Exporter fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
