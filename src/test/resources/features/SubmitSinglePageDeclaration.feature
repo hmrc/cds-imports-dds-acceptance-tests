@@ -324,20 +324,20 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 3.24 Seller - City                     | Troyes                  |
       | 3.24 Seller - Country Code             | FR                      |
       | 3.24 Seller - Postcode                 | 01414                   |
-      | 3.24 Seller - Phone number             | 003344556677            |
+      | 3.24 Seller - Phone Number             | 003344556677            |
       | 3.25 Seller - EORI                     | FR84736251              |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Seller
+    And the submitted XML should include a GoodsShipment with the following Seller
       | Element                  | Value                   |
       | Name                     | Tinfoil Sans Frontieres |
       | Address/Line             | 123 les Champs Insulees |
       | Address/CityName         | Troyes                  |
       | Address/CountryCode      | FR                      |
       | Address/PostcodeID       | 01414                   |
-      | Contact/Communication/ID | 003344556677            |
+      | Communication/ID         | 003344556677            |
       | ID                       | FR84736251              |
 
   Scenario: Section 3 Buyer fields are mapped to the correct XML elements
