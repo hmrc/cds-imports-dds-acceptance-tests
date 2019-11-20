@@ -415,15 +415,14 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Communication/ID         | 00441234567890     |
       | ID                       | GB45362718         |
 
-  @wip
   Scenario: Section 3 miscellaneous fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                               | Value                   |
       | 3.39 Authorisation holder - identifier 1 | GB62518473              |
-      | 3.39 Authorisation holder - type code  1 | OK4U                    |
+      | 3.39 Authorisation holder - type code 1  | OK4U                    |
       | 3.39 Authorisation holder - identifier 2 | GB98229822              |
-      | 3.39 Authorisation holder - type code  2 | YAY1                    |
+      | 3.39 Authorisation holder - type code 2  | YAY1                    |
       | 3.40 VAT Number (or TSPVAT) 1            | 99887766                |
       | 3.40 Role Code 1                         | VAT                     |
       | 3.40 VAT Number (or TSPVAT) 2            | 99997777                |
