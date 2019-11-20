@@ -33,7 +33,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | GovernmentProcedure/CurrentCode  | C07   |
       | GovernmentProcedure/PreviousCode | 99    |
 
-  Scenario: Sections 2 Previous document answers are mapped to the correct XML elements
+  Scenario: Sections 2 Previous document answers are mapped to the correct XML elements at Item level
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                               | Value             |
@@ -100,6 +100,56 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CategoryCode | Z               |
       | TypeCode     | 270             |
       | ID           | 9GB201909014004 |
+      | LineNumeric  | 1               |
+
+  Scenario: Sections 2 Previous document answers are mapped to the correct XML elements at Header level
+    Given PENDING
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                                               | Value             |
+      | 2.1 Header Previous Document Category 1                                  | Y                 |
+      | 2.1 Header Previous Document Type 1                                      | DCR               |
+      | 2.1 Header Previous Document Reference 1                                 | 1                 |
+      | 2.1 Header Previous Document Goods Item Identifier 1                     | 9GB201909014001   |
+      | 2.1 Header Previous Document Category 2                                  | Y                 |
+      | 2.1 Header Previous Document Type 2                                      | CLE               |
+      | 2.1 Header Previous Document Reference 2                                 | 1                 |
+      | 2.1 Header Previous Document Goods Item Identifier 2                     | 20191102          |
+      | 2.1 Header Previous Document Category 3                                  | Z                 |
+      | 2.1 Header Previous Document Type 3                                      | ZZZ               |
+      | 2.1 Header Previous Document Reference 3                                 | 1                 |
+      | 2.1 Header Previous Document Goods Item Identifier 3                     | 20191104          |
+      | 2.1 Header Previous Document Category 4                                  | Z                 |
+      | 2.1 Header Previous Document Type 4                                      | 235               |
+      | 2.1 Header Previous Document Reference 4                                 | 1                 |
+      | 2.1 Header Previous Document Goods Item Identifier 4                     | 9GB201909014003   |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a GoodsShipment with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Y               |
+      | TypeCode     | DCR             |
+      | ID           | 9GB201909014001 |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GoodsShipment with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Y               |
+      | TypeCode     | CLE             |
+      | ID           | 20191102        |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GoodsShipment with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | ZZZ             |
+      | ID           | 20191104        |
+      | LineNumeric  | 1               |
+    And the submitted XML should include a GoodsShipment with the following PreviousDocument
+      | Element      | Value           |
+      | CategoryCode | Z               |
+      | TypeCode     | 235             |
+      | ID           | 9GB201909014003 |
       | LineNumeric  | 1               |
 
   Scenario: Sections 2 Deferred payment answers are mapped to the correct XML elements
