@@ -316,7 +316,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                  | GB87654321     |
 
   Scenario: Section 3 Seller fields are mapped to the correct XML elements
-    Given PENDING
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                             | Value                   |
