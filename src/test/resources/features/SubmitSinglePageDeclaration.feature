@@ -183,7 +183,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | StatementDescription | PRET A PORTER |
 
   Scenario: Sections 2 Additional Document answers are mapped to the correct XML elements
-    Given PENDING
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                              | Value             |
