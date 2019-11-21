@@ -448,7 +448,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID       | 99997777 |
       | RoleCode | RAT      |
 
-  @wip
   Scenario: Section 4 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
