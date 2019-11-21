@@ -448,6 +448,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID       | 99997777 |
       | RoleCode | RAT      |
 
+  @wip
   Scenario: Section 4 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
@@ -456,6 +457,9 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 4.1 UN/LOCODE code               | GBDVR    |
       | 4.1 Country code + Location Name |          |
       | 4.8 Method of Payment            | E        |
+      | 4.9 Amount                       | 123.45   |
+      | 4.9 Currency                     | USD      |
+      | 4.9 Type                         | CD       |
       | 4.13 Valuation Indicators        | 0000     |
       | 4.14 Item Price/Amount           | 90500000 |
       | 4.14 Item Price/Currency Unit    | GBP      |
@@ -481,9 +485,11 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ItemChargeAmount | 90500000 |
     And the currencyID attribute of node ItemChargeAmount should be GBP
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
-      | Element          | Value    |
-      | MethodCode       | 1        |
+      | Element                                    | Value  |
+      | MethodCode                                 | 1      |
+      | ChargeDeduction/ChargesTypeCode            | CD     |
+      | ChargeDeduction/OtherChargeDeductionAmount | 123.45 |
+    And the currencyID attribute of node OtherChargeDeductionAmount should be USD
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
       | Element          | Value    |
       | DutyRegimeCode   | 100      |
-
