@@ -34,33 +34,34 @@ Feature: Submit import declarations to the declarations API via the single page 
       | GovernmentProcedure/PreviousCode | 99    |
 
   Scenario: Sections 2 Previous document answers are mapped to the correct XML elements at Item level
+    Given PENDING
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                                               | Value             |
-      | 2.1 Previous Document Category 1                                         | Y                 |
-      | 2.1 Previous Document Type 1                                             | DCR               |
-      | 2.1 Previous Document Reference 1                                        | 1                 |
-      | 2.1 Previous Document Goods Item Identifier 1                            | 9GB201909014000   |
-      | 2.1 Previous Document Category 2                                         | Y                 |
-      | 2.1 Previous Document Type 2                                             | CLE               |
-      | 2.1 Previous Document Reference 2                                        | 1                 |
-      | 2.1 Previous Document Goods Item Identifier 2                            | 20191101          |
-      | 2.1 Previous Document Category 3                                         | Z                 |
-      | 2.1 Previous Document Type 3                                             | ZZZ               |
-      | 2.1 Previous Document Reference 3                                        | 1                 |
-      | 2.1 Previous Document Goods Item Identifier 3                            | 20191103          |
-      | 2.1 Previous Document Category 4                                         | Z                 |
-      | 2.1 Previous Document Type 4                                             | 235               |
-      | 2.1 Previous Document Reference 4                                        | 1                 |
-      | 2.1 Previous Document Goods Item Identifier 4                            | 9GB201909014002   |
-      | 2.1 Previous Document Category 5                                         | Z                 |
-      | 2.1 Previous Document Type 5                                             | ZZZ               |
-      | 2.1 Previous Document Reference 5                                        | 1                 |
-      | 2.1 Previous Document Goods Item Identifier 5                            | 9GB201909014003   |
-      | 2.1 Previous Document Category 6                                         | Z                 |
-      | 2.1 Previous Document Type 6                                             | 270               |
-      | 2.1 Previous Document Reference 6                                        | 1                 |
-      | 2.1 Previous Document Goods Item Identifier 6                            | 9GB201909014004   |
+      | Field Name                                                                    | Value             |
+      | Item 2.1 Previous Document Category 1                                         | Y                 |
+      | Item 2.1 Previous Document Type 1                                             | DCR               |
+      | Item 2.1 Previous Document Reference 1                                        | 1                 |
+      | Item 2.1 Previous Document Goods Item Identifier 1                            | 9GB201909014000   |
+      | Item 2.1 Previous Document Category 2                                         | Y                 |
+      | Item 2.1 Previous Document Type 2                                             | CLE               |
+      | Item 2.1 Previous Document Reference 2                                        | 1                 |
+      | Item 2.1 Previous Document Goods Item Identifier 2                            | 20191101          |
+      | Item 2.1 Previous Document Category 3                                         | Z                 |
+      | Item 2.1 Previous Document Type 3                                             | ZZZ               |
+      | Item 2.1 Previous Document Reference 3                                        | 1                 |
+      | Item 2.1 Previous Document Goods Item Identifier 3                            | 20191103          |
+      | Item 2.1 Previous Document Category 4                                         | Z                 |
+      | Item 2.1 Previous Document Type 4                                             | 235               |
+      | Item 2.1 Previous Document Reference 4                                        | 1                 |
+      | Item 2.1 Previous Document Goods Item Identifier 4                            | 9GB201909014002   |
+      | Item 2.1 Previous Document Category 5                                         | Z                 |
+      | Item 2.1 Previous Document Type 5                                             | ZZZ               |
+      | Item 2.1 Previous Document Reference 5                                        | 1                 |
+      | Item 2.1 Previous Document Goods Item Identifier 5                            | 9GB201909014003   |
+      | Item 2.1 Previous Document Category 6                                         | Z                 |
+      | Item 2.1 Previous Document Type 6                                             | 270               |
+      | Item 2.1 Previous Document Reference 6                                        | 1                 |
+      | Item 2.1 Previous Document Goods Item Identifier 6                            | 9GB201909014004   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -107,22 +108,22 @@ Feature: Submit import declarations to the declarations API via the single page 
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                               | Value             |
-      | 2.1 Header Previous Document Category 1                                  | Y                 |
-      | 2.1 Header Previous Document Type 1                                      | DCR               |
-      | 2.1 Header Previous Document Reference 1                                 | 1                 |
-      | 2.1 Header Previous Document Goods Item Identifier 1                     | 9GB201909014001   |
-      | 2.1 Header Previous Document Category 2                                  | Y                 |
-      | 2.1 Header Previous Document Type 2                                      | CLE               |
-      | 2.1 Header Previous Document Reference 2                                 | 1                 |
-      | 2.1 Header Previous Document Goods Item Identifier 2                     | 20191102          |
-      | 2.1 Header Previous Document Category 3                                  | Z                 |
-      | 2.1 Header Previous Document Type 3                                      | ZZZ               |
-      | 2.1 Header Previous Document Reference 3                                 | 1                 |
-      | 2.1 Header Previous Document Goods Item Identifier 3                     | 20191104          |
-      | 2.1 Header Previous Document Category 4                                  | Z                 |
-      | 2.1 Header Previous Document Type 4                                      | 235               |
-      | 2.1 Header Previous Document Reference 4                                 | 1                 |
-      | 2.1 Header Previous Document Goods Item Identifier 4                     | 9GB201909014003   |
+      | Header 2.1 Previous Document Category 1                                  | Y                 |
+      | Header 2.1 Previous Document Type 1                                      | DCR               |
+      | Header 2.1 Previous Document Reference 1                                 | 1                 |
+      | Header 2.1 Previous Document Goods Item Identifier 1                     | 9GB201909014001   |
+      | Header 2.1 Previous Document Category 2                                  | Y                 |
+      | Header 2.1 Previous Document Type 2                                      | CLE               |
+      | Header 2.1 Previous Document Reference 2                                 | 1                 |
+      | Header 2.1 Previous Document Goods Item Identifier 2                     | 20191102          |
+      | Header 2.1 Previous Document Category 3                                  | Z                 |
+      | Header 2.1 Previous Document Type 3                                      | ZZZ               |
+      | Header 2.1 Previous Document Reference 3                                 | 1                 |
+      | Header 2.1 Previous Document Goods Item Identifier 3                     | 20191104          |
+      | Header 2.1 Previous Document Category 4                                  | Z                 |
+      | Header 2.1 Previous Document Type 4                                      | 235               |
+      | Header 2.1 Previous Document Reference 4                                 | 1                 |
+      | Header 2.1 Previous Document Goods Item Identifier 4                     | 9GB201909014003   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |

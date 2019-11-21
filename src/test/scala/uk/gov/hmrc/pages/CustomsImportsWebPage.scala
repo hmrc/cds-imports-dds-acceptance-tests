@@ -31,7 +31,7 @@ trait CustomsImportsWebPage extends BasePage {
 
   // TODO there's probably an XPath one-liner for this...
   def inputFieldLabelled(labelName: String): WebElement = {
-    webDriver.findElements(By.tagName("label")).asScala.find(_.getText == labelName).map { label =>
+    webDriver.findElements(By.tagName("label")).asScala.find(_.getText.replace("\n", " ") == labelName).map { label =>
       val inputId = label.getAttribute("for")
       webDriver.findElement(By.id(inputId))
 
