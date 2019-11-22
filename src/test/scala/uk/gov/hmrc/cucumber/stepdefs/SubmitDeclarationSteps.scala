@@ -10,7 +10,7 @@ import uk.gov.hmrc.utils.WSClient
 import scala.collection.JavaConverters._
 import scala.concurrent.Await
 import scala.concurrent.duration._
-import scala.xml.{NodeSeq, XML, Node}
+import scala.xml.{NodeSeq, XML}
 
 
 class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
@@ -64,6 +64,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   Then("""^the declaration status should be (.*)$""") { statusText: String =>
+    assertTitle("Notifications")
     refreshUntilElementVisible(".declaration-status")
     NotificationsPage.statusList.size match {
       case 1          => NotificationsPage.status should be(statusText)

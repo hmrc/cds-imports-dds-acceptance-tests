@@ -25,6 +25,7 @@ libraryDependencies ++= Seq(
   "com.novocode"               %  "junit-interface"         % "0.11"  % "test",
   "uk.gov.hmrc"                %% "zap-automation"          % "2.4.0"  % "test",
   "com.typesafe"               %  "config"                  % "1.3.2",
-  "net.lightbody.bmp"          % "browsermob-core"          % "2.1.5"
+  "net.lightbody.bmp"          % "browsermob-core"          % "2.1.5",
+  "com.google.guava"           % "guava"                    % "21.0"
   )
 
