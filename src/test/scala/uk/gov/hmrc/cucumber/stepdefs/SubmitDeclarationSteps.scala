@@ -3,6 +3,7 @@ package uk.gov.hmrc.cucumber.stepdefs
 import java.util
 
 import cucumber.api.DataTable
+import org.openqa.selenium.support.ui.ExpectedConditions.titleIs
 import org.scalatest.AppendedClues
 import uk.gov.hmrc.pages._
 import uk.gov.hmrc.utils.WSClient
@@ -64,7 +65,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   Then("""^the declaration status should be (.*)$""") { statusText: String =>
-    assertTitle("Notifications")
+    waitUntil(titleIs("Notifications"))
     refreshUntilElementVisible(".declaration-status")
     NotificationsPage.statusList.size match {
       case 1          => NotificationsPage.status should be(statusText)

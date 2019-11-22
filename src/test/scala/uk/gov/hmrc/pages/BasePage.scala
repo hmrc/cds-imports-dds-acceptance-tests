@@ -1,9 +1,9 @@
 package uk.gov.hmrc.pages
 
-import java.util.concurrent.TimeUnit
+import java.time.Duration
 
 import cucumber.api.scala.{EN, ScalaDsl}
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
+import org.openqa.selenium.support.ui.{ExpectedCondition, FluentWait}
 import org.openqa.selenium.{By, WebDriver}
 import org.scalatest.Matchers
 import org.scalatestplus.selenium.WebBrowser
@@ -62,12 +62,12 @@ trait BasePage extends Matchers with WebBrowser with StartUpTearDown with ScalaD
 
   def fluentWait(timeoutInSeconds: Int = 10, pollingTimeInMilliSeconds: Int = 500): FluentWait[WebDriver] = {
     new FluentWait[WebDriver](webDriver)
-      .withTimeout(timeoutInSeconds, TimeUnit.SECONDS)
-      .pollingEvery(pollingTimeInMilliSeconds, TimeUnit.MILLISECONDS)
+      .withTimeout(Duration.ofSeconds(timeoutInSeconds))
+      .pollingEvery(Duration.ofMillis(pollingTimeInMilliSeconds))
   }
 
-  def assertTitle(title: String) = {
-    fluentWait().until(ExpectedConditions.titleIs(title))
+  def waitUntil[T](expectedCondition: ExpectedCondition[T]): T = {
+    fluentWait().until(expectedCondition)
   }
 }
 
