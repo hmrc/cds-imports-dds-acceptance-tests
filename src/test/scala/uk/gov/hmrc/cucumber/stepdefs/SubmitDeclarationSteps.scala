@@ -3,6 +3,7 @@ package uk.gov.hmrc.cucumber.stepdefs
 import java.util
 
 import cucumber.api.DataTable
+import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions.titleIs
 import org.scalatest.AppendedClues
 import uk.gov.hmrc.pages._
@@ -86,6 +87,19 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
       val inputField = inputFieldLabelled(field.get("Field Name"))
       inputField.clear()
       inputField.sendKeys(field.get("Value"))
+    }
+  }
+
+  When("""^I enter the following previous document data at (.*) level$""") { (elementLevel: String, dataTable: DataTable) =>
+    val data = dataTable.asScalaListOfMaps
+    var docNumber = 0
+    data.foreach { row =>
+      row.keySet().asScala.toList.foreach { docElement =>
+        val inputField = webDriver.findElement(By.xpath(s"""//*[@id="documentationType_${elementLevel}_previousDocument_${docNumber}_$docElement"]"""))
+        inputField.clear()
+        inputField.sendKeys(row.get(docElement))
+      }
+      docNumber+=1
     }
   }
 
