@@ -11,7 +11,7 @@ Feature: Submit raw XML import declarations to the declarations API
     And I submit the declaration with malformed xml
     Then I should see malformed xml error with following details
       | errorHeading | errorMessage                   | errorLinkText                    |
-      | Error        | There was an error on the form | This is not a valid xml document |
+      | Error        | There was an error on the form | This is not a valid XML document |
 
   Scenario: Submit a declaration with invalid XML (doesn't match schema)
     Given I am signed in as a registered user
