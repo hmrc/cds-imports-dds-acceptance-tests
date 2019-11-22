@@ -493,3 +493,24 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
       | Element          | Value    |
       | DutyRegimeCode   | 100      |
+
+  @wip
+  Scenario: Section 5 answers are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                        | Value |
+      | 5.8 Destination country code      | GB    |
+      | 5.14 Dispatch/export country code | US    |
+      | 5.15 Origin country code          | MX    |
+      | 5.15 Origin country code type     | 1     |
+    And I click on Submit
+    And the submitted XML should include a GoodsShipment with the following Destination
+      | Element       | Value |
+      | CountryCode   | GB    |
+    And the submitted XML should include a GoodsShipment with the following ExportCountry
+      | Element       | Value |
+      | ID            | FR    |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Origin
+      | Element       | Value |
+      | CountryCode   | MX    |
+      | TypeCode      | 1     |
