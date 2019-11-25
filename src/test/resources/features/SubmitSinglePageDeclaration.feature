@@ -477,7 +477,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CountryCode   | GB    |
     And the submitted XML should include a GoodsShipment with the following ExportCountry
       | Element       | Value |
-      | ID            | FR    |
+      | ID            | US    |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following Origin
       | Element       | Value |
       | CountryCode   | MX    |
