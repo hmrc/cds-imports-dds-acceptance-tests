@@ -462,7 +462,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element          | Value    |
       | DutyRegimeCode   | 100      |
 
-
   Scenario: Section 5 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
@@ -482,3 +481,27 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element       | Value |
       | CountryCode   | MX    |
       | TypeCode      | 1     |
+@wip
+  Scenario: Section 6 answers are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name           | Value                       |
+      | Net Mass             | 5                           |
+      | Supplementary Units  | 0                           |
+      | Gross Mass           | 8                           |
+      | Description of Goods | TSP no description required |
+      | Type of Packages     | BF                          |
+      | Number of Packages   | 1                           |
+      | Shipping Marks       | TSP not required            |
+    And I click on Submit
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Commodity
+      | Element                          | Value                       |
+      | Description                      | TSP no description required |
+      | GoodsMeasure/GrossMassMeasure    | 8                           |
+      | GoodsMeasure/NetNetWeightMeasure | 5                           |
+      | GoodsMeasure/TariffQuantity      | 0                           |
+    And the submitted XML should include a Commodity with the following Packaging
+      | Element          | Value            |
+      | TypeCode         | BF               |
+      | QuantityQuantity | 1                |
+      | MarksNumbersID   | TSP not required |
