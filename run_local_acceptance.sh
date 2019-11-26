@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sbt -Denvironment=local "test-only uk.gov.hmrc.cucumber.runner.RunAcceptance"
+sbt -Denvironment=local -Dbrowser=chrome "test-only uk.gov.hmrc.cucumber.runner.RunAcceptance"
