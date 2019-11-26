@@ -485,14 +485,14 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 6 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name           | Value                       |
-      | Net Mass             | 5                           |
-      | Supplementary Units  | 0                           |
-      | Gross Mass           | 8                           |
-      | Description of Goods | TSP no description required |
-      | Type of Packages     | BF                          |
-      | Number of Packages   | 1                           |
-      | Shipping Marks       | TSP not required            |
+      | Field Name               | Value                       |
+      | 6.1 Net Mass             | 5                           |
+      | 6.2 Supplementary Units  | 0                           |
+      | 6.5 Gross Mass           | 8                           |
+      | 6.8 Description of Goods | TSP no description required |
+      | 6.9 Type of Packages     | BF                          |
+      | 6.10 Number of Packages  | 1                           |
+      | 6.11 Shipping Marks      | TSP not required            |
     And I click on Submit
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following Commodity
       | Element                          | Value                       |
