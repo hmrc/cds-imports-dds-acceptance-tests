@@ -436,6 +436,9 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 4.16 Valuation Method            | 1        |
       | 4.17 Preference                  | 100      |
     And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
     And the submitted XML should include a Declaration with the following TradeTerms
       | Element       | Value |
       | ConditionCode | CFR   |
@@ -477,6 +480,9 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 5.23 Goods Location - Country Code | FR    |
       | 5.23 Goods Location - Address Type | Z     |
     And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
     And the submitted XML should include a GoodsShipment with the following Destination
       | Element     | Value |
       | CountryCode | GB    |
@@ -507,6 +513,9 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 6.10 Number of Packages  | 1                           |
       | 6.11 Shipping Marks      | TSP not required            |
     And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following Commodity
       | Element                          | Value                       |
       | Description                      | TSP no description required |

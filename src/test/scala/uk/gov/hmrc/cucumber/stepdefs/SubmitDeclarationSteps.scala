@@ -124,9 +124,10 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   Then("""^the submitted XML should include a (.*) with the following (.*)$""") { (expectedElementName: String, expectedSubElementName: String, dataTable: DataTable) =>
+    val actualXml = lastSubmittedXML()
     val actualElements = expectedSubElementName match {
-      case "data elements" => lastSubmittedXML() \\ expectedElementName
-      case _ => lastSubmittedXML() \\ expectedElementName \\ expectedSubElementName
+      case "data elements" => actualXml \\ expectedElementName
+      case _ => actualXml \\ expectedElementName \\ expectedSubElementName
     }
     val expectedSubElements = dataTable.asScalaListOfMaps
     val expectedKeyValuePairs = expectedSubElements.map(ee => (ee.get("Element"), ee.get("Value")))
@@ -139,7 +140,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
       }
     }
 
-    actualKeyValuePairs should contain(expectedKeyValuePairs)
+    actualKeyValuePairs should contain(expectedKeyValuePairs) withClue(actualXml)
   }
 
   And("""^the (.*) attribute of node (.*) should be (.*)$""") { (attributeName: String, expectedSubElementName: String, expectedValue: String) =>
