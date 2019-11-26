@@ -6,26 +6,27 @@ Feature: Submit import declarations to the declarations API via the single page 
     And our application is registered with the DEC-API
     And I am signed in as a registered user
     And the Single Page Declaration feature is enabled
+
   @zap
   Scenario: Sections 1 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                                              | Value             |
-      | 1.1 Declaration Type                                                    | DT                |
-      | 1.2 Additional Declaration Type                                         | A                 |
-      | 1.6 Goods Item Number                                                   | 17                |
-      | 1.9 Total Number Of Items                                               | 42                |
-      | 1.10 Requested Procedure Code                                           | 66                |
-      | 1.10 Previous Procedure Code                                            | 99                |
-      | 1.11 Additional Procedure Code (000 or C07)                             | C07               |
+      | Field Name                                  | Value |
+      | 1.1 Declaration Type                        | DT    |
+      | 1.2 Additional Declaration Type             | A     |
+      | 1.6 Goods Item Number                       | 17    |
+      | 1.9 Total Number Of Items                   | 42    |
+      | 1.10 Requested Procedure Code               | 66    |
+      | 1.10 Previous Procedure Code                | 99    |
+      | 1.11 Additional Procedure Code (000 or C07) | C07   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
     And the submitted XML should include a Declaration with the following data elements
-      | Element               | Value    |
-      | TypeCode              | DTA      |
-      | GoodsItemQuantity     | 42       |
+      | Element           | Value |
+      | TypeCode          | DTA   |
+      | GoodsItemQuantity | 42    |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following data elements
       | Element                          | Value |
       | SequenceNumeric                  | 17    |
@@ -36,13 +37,13 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Sections 2 Previous document answers are mapped to the correct XML elements at Item level
     When I navigate to the Simple Declaration page
     And I enter the following previous document data at item level
-      | categoryCode | typeCode  | lineNumeric | id              |
-      | Y            | DCR       | 1           | 9GB201909014000 |
-      | Y            | CLE       | 1           | 20191101        |
-      | Z            | ZZZ       | 1           | 20191103        |
-      | Z            | 235       | 1           | 9GB201909014002 |
-      | Z            | ZZZ       | 1           | 9GB201909014003 |
-      | Z            | 270       | 1           | 9GB201909014004 |
+      | categoryCode | typeCode | lineNumeric | id              |
+      | Y            | DCR      | 1           | 9GB201909014000 |
+      | Y            | CLE      | 1           | 20191101        |
+      | Z            | ZZZ      | 1           | 20191103        |
+      | Z            | 235      | 1           | 9GB201909014002 |
+      | Z            | ZZZ      | 1           | 9GB201909014003 |
+      | Z            | 270      | 1           | 9GB201909014004 |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -54,17 +55,17 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID           | 9GB201909014000 |
       | LineNumeric  | 1               |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
-      | Element      | Value           |
-      | CategoryCode | Y               |
-      | TypeCode     | CLE             |
-      | ID           | 20191101        |
-      | LineNumeric  | 1               |
+      | Element      | Value    |
+      | CategoryCode | Y        |
+      | TypeCode     | CLE      |
+      | ID           | 20191101 |
+      | LineNumeric  | 1        |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
-      | Element      | Value           |
-      | CategoryCode | Z               |
-      | TypeCode     | ZZZ             |
-      | ID           | 20191103        |
-      | LineNumeric  | 1               |
+      | Element      | Value    |
+      | CategoryCode | Z        |
+      | TypeCode     | ZZZ      |
+      | ID           | 20191103 |
+      | LineNumeric  | 1        |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following PreviousDocument
       | Element      | Value           |
       | CategoryCode | Z               |
@@ -87,11 +88,11 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Sections 2 Previous document answers are mapped to the correct XML elements at Header level
     When I navigate to the Simple Declaration page
     And I enter the following previous document data at header level
-      | categoryCode | typeCode  | lineNumeric | id              |
-      | Y            | DCR       | 1           | 9GB201909014001 |
-      | Y            | CLE       | 1           | 20191102        |
-      | Z            | ZZZ       | 1           | 20191104        |
-      | Z            | 235       | 1           | 9GB201909014003 |
+      | categoryCode | typeCode | lineNumeric | id              |
+      | Y            | DCR      | 1           | 9GB201909014001 |
+      | Y            | CLE      | 1           | 20191102        |
+      | Z            | ZZZ      | 1           | 20191104        |
+      | Z            | 235      | 1           | 9GB201909014003 |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -103,17 +104,17 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID           | 9GB201909014001 |
       | LineNumeric  | 1               |
     And the submitted XML should include a GoodsShipment with the following PreviousDocument
-      | Element      | Value           |
-      | CategoryCode | Y               |
-      | TypeCode     | CLE             |
-      | ID           | 20191102        |
-      | LineNumeric  | 1               |
+      | Element      | Value    |
+      | CategoryCode | Y        |
+      | TypeCode     | CLE      |
+      | ID           | 20191102 |
+      | LineNumeric  | 1        |
     And the submitted XML should include a GoodsShipment with the following PreviousDocument
-      | Element      | Value           |
-      | CategoryCode | Z               |
-      | TypeCode     | ZZZ             |
-      | ID           | 20191104        |
-      | LineNumeric  | 1               |
+      | Element      | Value    |
+      | CategoryCode | Z        |
+      | TypeCode     | ZZZ      |
+      | ID           | 20191104 |
+      | LineNumeric  | 1        |
     And the submitted XML should include a GoodsShipment with the following PreviousDocument
       | Element      | Value           |
       | CategoryCode | Z               |
@@ -124,47 +125,47 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Sections 2 Deferred payment answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                                              | Value             |
-      | 2.6 Deferred Payment ID 1                                               | 1909241           |
-      | 2.6 Deferred Payment Category 1                                         | 1                 |
-      | 2.6 Deferred Payment Type 1                                             | DAN               |
-      | 2.6 Deferred Payment ID 2                                               | 1909242           |
-      | 2.6 Deferred Payment Category 2                                         | 1                 |
-      | 2.6 Deferred Payment Type 2                                             | DAN               |
+      | Field Name                      | Value   |
+      | 2.6 Deferred Payment ID 1       | 1909241 |
+      | 2.6 Deferred Payment Category 1 | 1       |
+      | 2.6 Deferred Payment Type 1     | DAN     |
+      | 2.6 Deferred Payment ID 2       | 1909242 |
+      | 2.6 Deferred Payment Category 2 | 1       |
+      | 2.6 Deferred Payment Type 2     | DAN     |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
     And the submitted XML should include a Declaration with the following AdditionalDocument
-      | Element               | Value   |
-      | ID                    | 1909241 |
-      | CategoryCode          | 1       |
-      | TypeCode              | DAN     |
+      | Element      | Value   |
+      | ID           | 1909241 |
+      | CategoryCode | 1       |
+      | TypeCode     | DAN     |
     And the submitted XML should include a Declaration with the following AdditionalDocument
-      | Element               | Value   |
-      | ID                    | 1909242 |
-      | CategoryCode          | 1       |
-      | TypeCode              | DAN     |
+      | Element      | Value   |
+      | ID           | 1909242 |
+      | CategoryCode | 1       |
+      | TypeCode     | DAN     |
 
   Scenario: Sections 2 Additional Information and LRN answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                                              | Value             |
-      | 2.2 Header Additional Information Code                                  | TSP01             |
-      | 2.2 Header Additional Information Description                           | TSP               |
-      | 2.2 Item Additional Information Code 1                                  | 00500             |
-      | 2.2 Item Additional Information Description 1                           | IMPORTER          |
-      | 2.2 Item Additional Information Code 2                                  | 00501             |
-      | 2.2 Item Additional Information Description 2                           | EXPORTER          |
-      | 2.2 Item Additional Information Code 3                                  | 00502             |
-      | 2.2 Item Additional Information Description 3                           | HOTEL PORTER      |
-      | 2.2 Item Additional Information Code 4                                  | 00503             |
-      | 2.2 Item Additional Information Description 4                           | COLE PORTER       |
-      | 2.2 Item Additional Information Code 5                                  | 00504             |
-      | 2.2 Item Additional Information Description 5                           | PINT OF PORTER    |
-      | 2.2 Item Additional Information Code 6                                  | 00505             |
-      | 2.2 Item Additional Information Description 6                           | PRET A PORTER     |
-      | 2.5 LRN                                                                 | Test1234          |
+      | Field Name                                    | Value          |
+      | 2.2 Header Additional Information Code        | TSP01          |
+      | 2.2 Header Additional Information Description | TSP            |
+      | 2.2 Item Additional Information Code 1        | 00500          |
+      | 2.2 Item Additional Information Description 1 | IMPORTER       |
+      | 2.2 Item Additional Information Code 2        | 00501          |
+      | 2.2 Item Additional Information Description 2 | EXPORTER       |
+      | 2.2 Item Additional Information Code 3        | 00502          |
+      | 2.2 Item Additional Information Description 3 | HOTEL PORTER   |
+      | 2.2 Item Additional Information Code 4        | 00503          |
+      | 2.2 Item Additional Information Description 4 | COLE PORTER    |
+      | 2.2 Item Additional Information Code 5        | 00504          |
+      | 2.2 Item Additional Information Description 5 | PINT OF PORTER |
+      | 2.2 Item Additional Information Code 6        | 00505          |
+      | 2.2 Item Additional Information Description 6 | PRET A PORTER  |
+      | 2.5 LRN                                       | Test1234       |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -173,9 +174,9 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element               | Value    |
       | FunctionalReferenceID | Test1234 |
     And the submitted XML should include a Declaration with the following AdditionalInformation
-      | Element              | Value    |
-      | StatementCode        | TSP01    |
-      | StatementDescription | TSP      |
+      | Element              | Value |
+      | StatementCode        | TSP01 |
+      | StatementDescription | TSP   |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalInformation
       | Element              | Value    |
       | StatementCode        | 00500    |
@@ -240,51 +241,51 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Status |
       | 202    |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
-      | Element                 | Value            |
-      | CategoryCode            | N                |
-      | TypeCode                | 935              |
-      | ID                      | 12345/30.09.2019 |
-      | LPCOExemptionCode       | AC               |
-      | Name                    | DocumentName1    |
+      | Element           | Value            |
+      | CategoryCode      | N                |
+      | TypeCode          | 935              |
+      | ID                | 12345/30.09.2019 |
+      | LPCOExemptionCode | AC               |
+      | Name              | DocumentName1    |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
-      | Element                 | Value             |
-      | CategoryCode            | C                 |
-      | TypeCode                | 514               |
-      | ID                      | GBEIR201909014000 |
+      | Element      | Value             |
+      | CategoryCode | C                 |
+      | TypeCode     | 514               |
+      | ID           | GBEIR201909014000 |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
-      | Element                 | Value         |
-      | CategoryCode            | C             |
-      | TypeCode                | 506           |
-      | ID                      | GBDPO1909241  |
+      | Element      | Value        |
+      | CategoryCode | C            |
+      | TypeCode     | 506          |
+      | ID           | GBDPO1909241 |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
-      | Element                 | Value            |
-      | CategoryCode            | N                |
-      | TypeCode                | 935              |
-      | ID                      | 12345/30.07.2019 |
-      | LPCOExemptionCode       | AC               |
+      | Element           | Value            |
+      | CategoryCode      | N                |
+      | TypeCode          | 935              |
+      | ID                | 12345/30.07.2019 |
+      | LPCOExemptionCode | AC               |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
-      | Element                 | Value            |
-      | CategoryCode            | N                |
-      | TypeCode                | 935              |
-      | ID                      | 12345/30.08.2019 |
-      | LPCOExemptionCode       | AC               |
+      | Element           | Value            |
+      | CategoryCode      | N                |
+      | TypeCode          | 935              |
+      | ID                | 12345/30.08.2019 |
+      | LPCOExemptionCode | AC               |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
-      | Element                 | Value            |
-      | CategoryCode            | N                |
-      | TypeCode                | 935              |
-      | ID                      | 12345/30.09.2019 |
-      | LPCOExemptionCode       | AC               |
+      | Element           | Value            |
+      | CategoryCode      | N                |
+      | TypeCode          | 935              |
+      | ID                | 12345/30.09.2019 |
+      | LPCOExemptionCode | AC               |
 
   Scenario: Section 3 Exporter fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value                   |
-      | 3.1 Exporter - Name                    | Transport du Tinfoil    |
-      | 3.1 Exporter - Street and Number       | 1 Rue Aluminum          |
-      | 3.1 Exporter - City                    | Metalville              |
-      | 3.1 Exporter - Country Code            | FR                      |
-      | 3.1 Exporter - Postcode                | 07030                   |
-      | 3.2 Exporter - EORI                    | FR12345678              |
+      | Field Name                       | Value                |
+      | 3.1 Exporter - Name              | Transport du Tinfoil |
+      | 3.1 Exporter - Street and Number | 1 Rue Aluminum       |
+      | 3.1 Exporter - City              | Metalville           |
+      | 3.1 Exporter - Country Code      | FR                   |
+      | 3.1 Exporter - Postcode          | 07030                |
+      | 3.2 Exporter - EORI              | FR12345678           |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -301,8 +302,8 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 3 Declarant fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value                   |
-      | 3.18 Declarant - EORI                  | GB15263748              |
+      | Field Name            | Value      |
+      | 3.18 Declarant - EORI | GB15263748 |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -314,13 +315,13 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 3 Importer fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value                   |
-      | 3.15 Importer - Name                   | Foil Solutions          |
-      | 3.15 Importer - Street and Number      | Aluminium Way           |
-      | 3.15 Importer - City                   | Metalton                |
-      | 3.15 Importer - Country Code           | UK                      |
-      | 3.15 Importer - Postcode               | ME7 4LL                 |
-      | 3.16 Importer - EORI                   | GB87654321              |
+      | Field Name                        | Value          |
+      | 3.15 Importer - Name              | Foil Solutions |
+      | 3.15 Importer - Street and Number | Aluminium Way  |
+      | 3.15 Importer - City              | Metalton       |
+      | 3.15 Importer - Country Code      | UK             |
+      | 3.15 Importer - Postcode          | ME7 4LL        |
+      | 3.16 Importer - EORI              | GB87654321     |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -337,65 +338,65 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 3 Seller fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value                   |
-      | 3.24 Seller - Name                     | Tinfoil Sans Frontieres |
-      | 3.24 Seller - Street and Number        | 123 les Champs Insulees |
-      | 3.24 Seller - City                     | Troyes                  |
-      | 3.24 Seller - Country Code             | FR                      |
-      | 3.24 Seller - Postcode                 | 01414                   |
-      | 3.24 Seller - Phone Number             | 003344556677            |
-      | 3.25 Seller - EORI                     | FR84736251              |
+      | Field Name                      | Value                   |
+      | 3.24 Seller - Name              | Tinfoil Sans Frontieres |
+      | 3.24 Seller - Street and Number | 123 les Champs Insulees |
+      | 3.24 Seller - City              | Troyes                  |
+      | 3.24 Seller - Country Code      | FR                      |
+      | 3.24 Seller - Postcode          | 01414                   |
+      | 3.24 Seller - Phone Number      | 003344556677            |
+      | 3.25 Seller - EORI              | FR84736251              |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
     And the submitted XML should include a GoodsShipment with the following Seller
-      | Element                  | Value                   |
-      | Name                     | Tinfoil Sans Frontieres |
-      | Address/Line             | 123 les Champs Insulees |
-      | Address/CityName         | Troyes                  |
-      | Address/CountryCode      | FR                      |
-      | Address/PostcodeID       | 01414                   |
-      | Communication/ID         | 003344556677            |
-      | ID                       | FR84736251              |
+      | Element             | Value                   |
+      | Name                | Tinfoil Sans Frontieres |
+      | Address/Line        | 123 les Champs Insulees |
+      | Address/CityName    | Troyes                  |
+      | Address/CountryCode | FR                      |
+      | Address/PostcodeID  | 01414                   |
+      | Communication/ID    | 003344556677            |
+      | ID                  | FR84736251              |
 
   Scenario: Section 3 Buyer fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                             | Value                   |
-      | 3.26 Buyer - Name                      | Tinfoil R Us            |
-      | 3.26 Buyer - Street and Number         | 12 Alcan Boulevard      |
-      | 3.26 Buyer - City                      | Sheffield               |
-      | 3.26 Buyer - Country Code              | UK                      |
-      | 3.26 Buyer - Postcode                  | S1 1VA                  |
-      | 3.26 Buyer - Phone Number              | 00441234567890          |
-      | 3.27 Buyer - EORI                      | GB45362718              |
+      | Field Name                     | Value              |
+      | 3.26 Buyer - Name              | Tinfoil R Us       |
+      | 3.26 Buyer - Street and Number | 12 Alcan Boulevard |
+      | 3.26 Buyer - City              | Sheffield          |
+      | 3.26 Buyer - Country Code      | UK                 |
+      | 3.26 Buyer - Postcode          | S1 1VA             |
+      | 3.26 Buyer - Phone Number      | 00441234567890     |
+      | 3.27 Buyer - EORI              | GB45362718         |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
     And the submitted XML should include a GoodsShipment with the following Buyer
-      | Element                  | Value              |
-      | Name                     | Tinfoil R Us       |
-      | Address/Line             | 12 Alcan Boulevard |
-      | Address/CityName         | Sheffield          |
-      | Address/CountryCode      | UK                 |
-      | Address/PostcodeID       | S1 1VA             |
-      | Communication/ID         | 00441234567890     |
-      | ID                       | GB45362718         |
+      | Element             | Value              |
+      | Name                | Tinfoil R Us       |
+      | Address/Line        | 12 Alcan Boulevard |
+      | Address/CityName    | Sheffield          |
+      | Address/CountryCode | UK                 |
+      | Address/PostcodeID  | S1 1VA             |
+      | Communication/ID    | 00441234567890     |
+      | ID                  | GB45362718         |
 
   Scenario: Section 3 miscellaneous fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                               | Value                   |
-      | 3.39 Authorisation holder - identifier 1 | GB62518473              |
-      | 3.39 Authorisation holder - type code 1  | OK4U                    |
-      | 3.39 Authorisation holder - identifier 2 | GB98229822              |
-      | 3.39 Authorisation holder - type code 2  | YAY1                    |
-      | 3.40 VAT Number (or TSPVAT) 1            | 99887766                |
-      | 3.40 Role Code 1                         | VAT                     |
-      | 3.40 VAT Number (or TSPVAT) 2            | 99997777                |
-      | 3.40 Role Code 2                         | RAT                     |
+      | Field Name                               | Value      |
+      | 3.39 Authorisation holder - identifier 1 | GB62518473 |
+      | 3.39 Authorisation holder - type code 1  | OK4U       |
+      | 3.39 Authorisation holder - identifier 2 | GB98229822 |
+      | 3.39 Authorisation holder - type code 2  | YAY1       |
+      | 3.40 VAT Number (or TSPVAT) 1            | 99887766   |
+      | 3.40 Role Code 1                         | VAT        |
+      | 3.40 VAT Number (or TSPVAT) 2            | 99997777   |
+      | 3.40 Role Code 2                         | RAT        |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -459,29 +460,41 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ChargeDeduction/OtherChargeDeductionAmount | 123.45 |
     And the currencyID attribute of node OtherChargeDeductionAmount should be USD
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
-      | Element          | Value    |
-      | DutyRegimeCode   | 100      |
+      | Element        | Value |
+      | DutyRegimeCode | 100   |
 
+  @wip
   Scenario: Section 5 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                        | Value |
-      | 5.8 Destination country code      | GB    |
-      | 5.14 Dispatch/export country code | US    |
-      | 5.15 Origin country code          | MX    |
-      | 5.15 Origin country code type     | 1     |
+      | Field Name                         | Value |
+      | 5.8 Destination country code       | GB    |
+      | 5.14 Dispatch/export country code  | US    |
+      | 5.15 Origin country code           | MX    |
+      | 5.15 Origin country code type      | 1     |
+      | 5.23 Goods Location - Name         | DVR   |
+      | 5.23 Goods Location - Type         | B     |
+      | 5.23 Goods Location - Country Code | FR    |
+      | 5.23 Goods Location - Address Type | Z     |
     And I click on Submit
     And the submitted XML should include a GoodsShipment with the following Destination
-      | Element       | Value |
-      | CountryCode   | GB    |
+      | Element     | Value |
+      | CountryCode | GB    |
     And the submitted XML should include a GoodsShipment with the following ExportCountry
-      | Element       | Value |
-      | ID            | US    |
+      | Element | Value |
+      | ID      | US    |
+    And the submitted XML should include a Consignment with the following GoodsLocation
+      | Element             | Value |
+      | Name                | DVR   |
+      | TypeCode            | B     |
+      | Address/CountryCode | FR    |
+      | Address/TypeCode    | Z     |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following Origin
-      | Element       | Value |
-      | CountryCode   | MX    |
-      | TypeCode      | 1     |
-@wip
+      | Element     | Value |
+      | CountryCode | MX    |
+      | TypeCode    | 1     |
+
+  @wip
   Scenario: Section 6 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
