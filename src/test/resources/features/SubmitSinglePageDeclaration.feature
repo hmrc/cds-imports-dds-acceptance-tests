@@ -526,3 +526,27 @@ Feature: Submit import declarations to the declarations API via the single page 
       | TypeCode         | BF               |
       | QuantityQuantity | 1                |
       | MarksNumbersID   | TSP not required |
+
+  @wip
+  Scenario: Section 7 answers are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                       | Value |
+      | 7.2 Container                                    | 0     |
+      | 7.4 Mode of transport code                       | 1     |
+      | 7.9 ID of means of transport on arrival          | 12345 |
+      | 7.9 Transport ID type                            | 10    |
+      | 7.15 Nationality of means of transport at border | BR    |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a GoodsShipment with the following Consignment
+      | Element                                      | Value |
+      | ContainerCode                                | 0     |
+      | ArrivalTransportMeans/ID                     | 12345 |
+      | ArrivalTransportMeans/IdentificationTypeCode | 10    |
+    And the submitted XML should include a Declaration with the following BorderTransportMeans
+      | Element                     | Value |
+      | ModeCode                    | 1     |
+      | RegistrationNationalityCode | BR    |
