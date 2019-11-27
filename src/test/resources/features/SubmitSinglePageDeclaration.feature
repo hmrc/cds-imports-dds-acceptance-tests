@@ -504,13 +504,13 @@ Feature: Submit import declarations to the declarations API via the single page 
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name               | Value                       |
-      | 6.1 Net Mass             | 5                           |
-      | 6.2 Supplementary Units  | 0                           |
-      | 6.5 Gross Mass           | 8                           |
-      | 6.8 Description of Goods | TSP no description required |
-      | 6.9 Type of Packages     | BF                          |
-      | 6.10 Number of Packages  | 1                           |
-      | 6.11 Shipping Marks      | TSP not required            |
+      | 6.1 Net mass             | 5                           |
+      | 6.2 Supplementary units  | 0                           |
+      | 6.5 Gross mass           | 8                           |
+      | 6.8 Description of goods | TSP no description required |
+      | 6.9 Type of packages     | BF                          |
+      | 6.10 Number of packages  | 1                           |
+      | 6.11 Shipping marks      | TSP not required            |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
