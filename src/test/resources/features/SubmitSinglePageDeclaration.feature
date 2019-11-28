@@ -530,7 +530,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element               | Value |
       | TotalGrossMassMeasure | 8     |
 
-  @wip
   Scenario: Section 7 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
