@@ -499,7 +499,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CountryCode | MX    |
       | TypeCode    | 1     |
 
-  @wip
   Scenario: Section 6 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data

@@ -20,7 +20,6 @@ import org.openqa.selenium.chrome.ChromeDriverService
 import uk.gov.hmrc.webdriver.SingletonDriver
 
 object BrowserDriver {
-  private val sysProperties = System.getProperties
 
   val turnOnProxy: String = Option(System.getProperty("turnOnProxy")).getOrElse("No")
 
