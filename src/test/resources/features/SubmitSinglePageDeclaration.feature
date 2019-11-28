@@ -521,11 +521,14 @@ Feature: Submit import declarations to the declarations API via the single page 
       | GoodsMeasure/GrossMassMeasure    | 8                           |
       | GoodsMeasure/NetNetWeightMeasure | 5                           |
       | GoodsMeasure/TariffQuantity      | 0                           |
-    And the submitted XML should include a Commodity with the following Packaging
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following Packaging
       | Element          | Value            |
       | TypeCode         | BF               |
       | QuantityQuantity | 1                |
       | MarksNumbersID   | TSP not required |
+    And the submitted XML should include a Declaration with the following data elements
+      | Element               | Value |
+      | TotalGrossMassMeasure | 8     |
 
   @wip
   Scenario: Section 7 answers are mapped to the correct XML elements
