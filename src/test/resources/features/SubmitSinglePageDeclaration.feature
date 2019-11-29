@@ -532,16 +532,15 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 6 Classification fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                  | Value    |
-      | 6.14 Combined Nomenclature code Identifier  | 76071111 |
-      | 6.14 Combined Nomenclature code Type        | TSP      |
-      | 6.15 TARIC code Identifier                  | 10       |
-      | 6.15 TARIC code Type                        | TRC      |
-      | 6.16 TARIC Additional code(s) Identifier    | 1234     |
-      | 6.16 TARIC Additional code(s) Type          | TRA      |
-      | 6.17 National Additional code(s) Identifier | VATZ     |
-      | 6.17 National Additional code(s) Type       | GN       |
-      | 6.18 Total Packages                         | 1        |
+      | Field Name                                               | Value    |
+      | 6.14 Combined Nomenclature code id                       | 76071111 |
+      | 6.14 Combined Nomenclature code identification type code | TSP      |
+      | 6.15 TARIC code id                                       | 10       |
+      | 6.15 TARIC code identification type code                 | TRC      |
+      | 6.16 TARIC Add code id                                   | 1234     |
+      | 6.16 TARIC Add code identification type code             | TRA      |
+      | 6.17 National Additional code id                         | VATZ     |
+      | 6.17 National Additional code identification type code   | GN       |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
