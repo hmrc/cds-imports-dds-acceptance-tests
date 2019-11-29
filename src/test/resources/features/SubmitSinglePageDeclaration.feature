@@ -499,7 +499,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | CountryCode | MX    |
       | TypeCode    | 1     |
 
-  Scenario: Section 6 answers are mapped to the correct XML elements
+  Scenario: Section 6 GoodsMeasure and Packaging fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name               | Value                       |
@@ -528,6 +528,43 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a Declaration with the following data elements
       | Element               | Value |
       | TotalGrossMassMeasure | 8     |
+@wip
+  Scenario: Section 6 Classification fields are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                  | Value    |
+      | 6.14 Combined Nomenclature code Identifier  | 76071111 |
+      | 6.14 Combined Nomenclature code Type        | TSP      |
+      | 6.15 TARIC code Identifier                  | 10       |
+      | 6.15 TARIC code Type                        | TRC      |
+      | 6.16 TARIC Additional code(s) Identifier    | 1234     |
+      | 6.16 TARIC Additional code(s) Type          | TRA      |
+      | 6.17 National Additional code(s) Identifier | VATZ     |
+      | 6.17 National Additional code(s) Type       | GN       |
+      | 6.18 Total Packages                         | 1        |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a Commodity with the following Classification
+      | Element                | Value    |
+      | ID                     | 76071111 |
+      | IdentificationTypeCode | TSP      |
+    And the submitted XML should include a Commodity with the following Classification
+      | Element                | Value    |
+      | ID                     | 10       |
+      | IdentificationTypeCode | TRC      |
+    And the submitted XML should include a Commodity with the following Classification
+      | Element                | Value    |
+      | ID                     | 1234     |
+      | IdentificationTypeCode | TRA      |
+    And the submitted XML should include a Commodity with the following Classification
+      | Element                | Value    |
+      | ID                     | VATZ     |
+      | IdentificationTypeCode | GN       |
+    And the submitted XML should include a Declaration with the following data elements
+      | Element              | Value |
+      | TotalPackageQuantity | 1     |
 
   Scenario: Section 7 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
