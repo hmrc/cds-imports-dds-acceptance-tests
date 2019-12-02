@@ -470,13 +470,14 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 4.9 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                       | Value    |
-      | 4.9 Amount - header              | 99.32    |
-      | 4.9 Currency - header            | GBP      |
-      | 4.9 Type - header                | AS       |
-      | 4.9 Amount - item                | 123.45   |
-      | 4.9 Currency - item              | USD      |
-      | 4.9 Type - item                  | CD       |
+      | Field Name                           | Value  |
+      | 4.9 Amount - header                  | 99.32  |
+      | 4.9 Currency - header                | GBP    |
+      | 4.9 Type - header                    | AS     |
+      | 4.9 Amount - item                    | 123.45 |
+      | 4.9 Currency - item                  | USD    |
+      | 4.9 Type - item                      | CD     |
+      | 5.21 Place of loading - airport code | JFK    |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -492,6 +493,9 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ChargeDeduction/ChargesTypeCode            | CD     |
       | ChargeDeduction/OtherChargeDeductionAmount | 123.45 |
     And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/CustomsValuation/ChargeDeduction/OtherChargeDeductionAmount should be USD
+    And the submitted XML should include a GoodsShipment with the following Consignment
+      | Element            | Value |
+      | LoadingLocation/ID | JFK   |
 
   Scenario: Section 5 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
