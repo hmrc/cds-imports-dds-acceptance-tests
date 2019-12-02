@@ -459,13 +459,13 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following InvoiceLine
       | Element          | Value    |
       | ItemChargeAmount | 90500000 |
-    And the currencyID attribute of node ItemChargeAmount should be GBP
+    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/Commodity/InvoiceLine/ItemChargeAmount should be GBP
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
       | Element                                    | Value  |
       | MethodCode                                 | 1      |
       | ChargeDeduction/ChargesTypeCode            | CD     |
       | ChargeDeduction/OtherChargeDeductionAmount | 123.45 |
-    And the currencyID attribute of node OtherChargeDeductionAmount should be USD
+    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/CustomsValuation/ChargeDeduction/OtherChargeDeductionAmount should be USD
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
       | Element        | Value |
       | DutyRegimeCode | 100   |

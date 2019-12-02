@@ -144,8 +144,9 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
   }
 
   And("""^the (.*) attribute of node (.*) should be (.*)$""") { (attributeName: String, expectedSubElementName: String, expectedValue: String) =>
-    val actualValue = (lastSubmittedXML() \\ expectedSubElementName).head.attribute(attributeName).get.head.text
-    actualValue should be(expectedValue) withClue s"$attributeName attribute is not present in $expectedSubElementName node"
+    val element = findElements(lastSubmittedXML(), expectedSubElementName)
+    val attrValue = element.head.attribute(attributeName)
+    attrValue.head.text should be(expectedValue) withClue s"$attributeName attribute is not present in $expectedSubElementName node"
   }
 
   private def lastSubmittedXML(): NodeSeq = {
