@@ -95,7 +95,7 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     var docNumber = 0
     data.foreach { row =>
       row.keySet().asScala.toList.foreach { docElement =>
-        val inputField = webDriver.findElement(By.xpath(s"""//*[@id="documentationType_${elementLevel}_previousDocument_${docNumber}_$docElement"]"""))
+        val inputField = webDriver.findElement(By.xpath(s"""//*[@id="documentationAndReferences_${elementLevel}_previousDocument_${docNumber}_$docElement"]"""))
         inputField.clear()
         inputField.sendKeys(row.get(docElement))
       }
