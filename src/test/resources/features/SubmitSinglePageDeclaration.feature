@@ -618,3 +618,32 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element                     | Value |
       | ModeCode                    | 1     |
       | RegistrationNationalityCode | BR    |
+@wip
+  Scenario: Section 8 Quota and guarantee fields are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                       | Value |
+      | Quota order number                               | 1     |
+      | Guarantee type                                   | 0     |
+      | GRN                                              | 1234  |
+      | Other Guarantee Reference                        | 456   |
+      | Access Code                                      | 90    |
+      | Amount of import duty and other charges          | 2000  |
+      | Currency Code                                    | GBP   |
+      | Customs office of guarantee                      | 29    |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a Commodity with the following DutyTaxFee
+      | Element                     | Value |
+      | QuotaOrderID                | 1     |
+    And the submitted XML should include a Declaration with the following ObligationGuarantee
+      | Element                     | Value |
+      | AmountAmount                | 2000  |
+      | ID                          | 456   |
+      | ReferenceID                 | 1234  |
+      | SecurityDetailsCode         | 0     |
+      | AccessCode                  | 90    |
+      | GuaranteeOffice/ID          | 29    |
+    And the currencyID attribute of node Declaration/ObligationGuarantee/AmountAmount/ should be GBP
