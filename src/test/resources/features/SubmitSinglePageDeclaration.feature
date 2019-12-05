@@ -654,4 +654,4 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element                | Value |
       | TransactionNatureCode  | 3     |
       | StatisticalValueAmount | 99    |
-    And the currencyID attribute of node GovernmentAgencyGoodsItem/StatisticalValueAmount should be MXN
+    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/StatisticalValueAmount should be MXN
