@@ -486,7 +486,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a GoodsShipment with the following Consignment
       | Element            | Value |
       | LoadingLocation/ID | JFK   |
-@wip
+
   Scenario: Section 5 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
