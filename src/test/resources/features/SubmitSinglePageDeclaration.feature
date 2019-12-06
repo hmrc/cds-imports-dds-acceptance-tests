@@ -490,17 +490,17 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 5 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                      | Value |
-      | 5.8 Destination country code                    | GB    |
-      | 5.14 Dispatch/export country code               | US    |
-      | 5.15 Origin country code                        | MX    |
-      | 5.15 Origin country code type                   | 1     |
-      | 5.16 Preferential origin country code           | BD    |
-      | 5.16 Preferential origin country code type      | 2     |
-      | 5.23 Goods Location - Name                      | DVR   |
-      | 5.23 Goods Location - Type                      | B     |
-      | 5.23 Goods Location - Country Code              | FR    |
-      | 5.23 Goods Location - Address Type              | Z     |
+      | Field Name                                  | Value |
+      | 5.8 Destination country code                | GB    |
+      | 5.14 Dispatch/export country code           | US    |
+      | 5.15 Origin country code                    | MX    |
+      | 5.15 Origin country code type               | 1     |
+      | 5.16 Preferential origin country code       | BD    |
+      | 5.16 Preferential origin country code type  | 2     |
+      | 5.23 Goods Location - Name                  | DVR   |
+      | 5.23 Goods Location - Type                  | B     |
+      | 5.23 Goods Location - Country Code          | FR    |
+      | 5.23 Goods Location - Address Type          | Z     |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
