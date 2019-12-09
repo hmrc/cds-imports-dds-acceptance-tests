@@ -201,8 +201,8 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element              | Value         |
       | StatementCode        | 00505         |
       | StatementDescription | PRET A PORTER |
-@wip
-  Scenario: Sections 2 and 8.7 Additional Document answers are mapped to the correct XML elements
+
+  Scenario: Sections 2 Additional Document answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
       | Field Name                                                              | Value             |
@@ -231,15 +231,11 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 2.3 Additional Document Identifier (include TSP authorisation number) 5 | 12345/30.08.2019  |
       | 2.3 Additional Document Status 5                                        | AC                |
       | 2.3 Additional Document Status Reason 5                                 |                   |
-      | 8.7 Additional Document Category Code                                   | N                 |
-      | 8.7 Additional Document Type Code                                       | 935               |
-      | 8.7 Additional Document Identifier (include TSP authorisation number)   | 12345/30.09.2019  |
-      | 8.7 Additional Document Status                                          | AC                |
-      | 8.7 Additional Document Status Reason                                   |                   |
-      | 8.7 Writing Off - Issuing Authority                                     | ABC               |
-      | 8.7 Writing Off - Date of Validity                                      | 22/01/2020        |
-      | 8.7 Writing Off - Quantity                                              | 1                 |
-      | 8.7 Writing Off - Measurement Unit & Qualifier                          | KGM               |
+      | 2.3 Additional Document Category Code 6                                 | N                 |
+      | 2.3 Additional Document Type Code 6                                     | 935               |
+      | 2.3 Additional Document Identifier (include TSP authorisation number) 6 | 12345/30.09.2019  |
+      | 2.3 Additional Document Status 6                                        | AC                |
+      | 2.3 Additional Document Status Reason 6                                 |                   |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -279,10 +275,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | TypeCode                  | 935              |
       | ID                        | 12345/30.09.2019 |
       | LPCOExemptionCode         | AC               |
-      | Submitter/Name            | ABC              |
-      | EffectiveDateTime         | 22/01/2020       |
-      | WriteOff/QuantityQuantity | 1                |
-    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity should be KGM
 
   Scenario: Section 3 Exporter fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
@@ -668,3 +660,22 @@ Feature: Submit import declarations to the declarations API via the single page 
       | TransactionNatureCode  | 3     |
       | StatisticalValueAmount | 99    |
     And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/StatisticalValueAmount should be MXN
+  @wip
+  Scenario: Section 8.7 Write off value fields are mapped to the correct XML elements
+    When I navigate to the Simple Declaration page
+    And I enter the following data
+      | Field Name                                     | Value      |
+      | 8.7 Writing Off - Issuing Authority            | ABC        |
+      | 8.7 Writing Off - Date of Validity             | 22/01/2020 |
+      | 8.7 Writing Off - Quantity                     | 1          |
+      | 8.7 Writing Off - Measurement Unit & Qualifier | KGM        |
+    And I click on Submit
+    Then I should see submitted page with the following response details for valid data
+      | Status |
+      | 202    |
+    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+      | Element                   | Value            |
+      | Submitter/Name            | ABC              |
+      | EffectiveDateTime         | 22/01/2020       |
+      | WriteOff/QuantityQuantity | 1                |
+    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity should be KGM
