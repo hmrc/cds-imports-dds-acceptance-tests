@@ -19,6 +19,9 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
 
   private val DEC_API_STUB_GOOD_DECLARATION_PREFIX = "G"
   private val DEC_API_STUB_BAD_DECLARATION_PREFIX = "B"
+  private val DEC_API_STUB_TAX_LIABILITY_PREFIX = "TAX_LIABILITY"
+  private val DEC_API_STUB_INSUFFICIENT_BALANCE_PREFIX = "INSUFFICIENT"
+  private val DEC_API_STUB_INSUFFICIENT_BALANCE_REMINDER_PREFIX = "REMINDER"
 
   When("""^I submit the declaration with (.*)$""") { dataType: String =>
     val xmlFromPage = SubmitDeclarationPage.declarationXmlInput.getText
@@ -26,6 +29,9 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
       case "valid data" => xmlFromPage
       case "correct data" => modifyFunctionalReferenceId(DEC_API_STUB_GOOD_DECLARATION_PREFIX, xmlFromPage)
       case "incorrect data" => modifyFunctionalReferenceId(DEC_API_STUB_BAD_DECLARATION_PREFIX, xmlFromPage)
+      case "tax liability" => modifyFunctionalReferenceId(DEC_API_STUB_TAX_LIABILITY_PREFIX, xmlFromPage)
+      case "insufficient balance" => modifyFunctionalReferenceId(DEC_API_STUB_INSUFFICIENT_BALANCE_PREFIX, xmlFromPage)
+      case "insufficient balance reminder" => modifyFunctionalReferenceId(DEC_API_STUB_INSUFFICIENT_BALANCE_REMINDER_PREFIX, xmlFromPage)
       case "malformed xml" => "malformed xml"
       case "invalid xml" => """<a>this is a test</a>"""
       case _ => throw new IllegalArgumentException("Invalid input xml type")
@@ -62,6 +68,9 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
     dataType match {
       case "valid data" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be 0
       case "invalid xml" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should be(0)
+      case "tax liability" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be 0
+      case "insufficient balance" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be 0
+      case "insufficient balance reminder" => DeclarationConfirmationPage.decApiResponseRows("ConversationId").length should not be 0
     }
   }
 
