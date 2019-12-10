@@ -640,7 +640,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 202    |
     And the submitted XML should include a Commodity with the following DutyTaxFee
       | Element                     | Value |
-      | QuotaOrderID                | 1     |
+      | QuotaOrderId                | 1     |
     And the submitted XML should include a Declaration with the following ObligationGuarantee
       | Element                     | Value |
       | AmountAmount                | 2000  |
