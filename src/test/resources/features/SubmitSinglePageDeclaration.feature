@@ -473,8 +473,8 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Status |
       | 202    |
     And the submitted XML should include a GoodsShipment with the following CustomsValuation
-      | Element                                    | Value  |
-      | ChargeDeduction/ChargesTypeCode            | AS     |
+      | Element                                    | Value |
+      | ChargeDeduction/ChargesTypeCode            | AS    |
       | ChargeDeduction/OtherChargeDeductionAmount | 99.32 |
     And the currencyID attribute of node Declaration/GoodsShipment/CustomsValuation/ChargeDeduction/OtherChargeDeductionAmount should be GBP
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
@@ -490,17 +490,20 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 5 answers are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                  | Value |
-      | 5.8 Destination country code                | GB    |
-      | 5.14 Dispatch/export country code           | US    |
-      | 5.15 Origin country code                    | MX    |
-      | 5.15 Origin country code type               | 1     |
-      | 5.16 Preferential origin country code       | BD    |
-      | 5.16 Preferential origin country code type  | 2     |
-      | 5.23 Goods Location - Name                  | DVR   |
-      | 5.23 Goods Location - Type                  | B     |
-      | 5.23 Goods Location - Country Code          | FR    |
-      | 5.23 Goods Location - Address Type          | Z     |
+      | Field Name                                 | Value            |
+      | 5.8 Destination country code               | GB               |
+      | 5.14 Dispatch/export country code          | US               |
+      | 5.15 Origin country code                   | MX               |
+      | 5.15 Origin country code type              | 1                |
+      | 5.16 Preferential origin country code      | BD               |
+      | 5.16 Preferential origin country code type | 2                |
+      | 5.23 Goods Location - Name                 | DVR              |
+      | 5.23 Goods Location - Type                 | B                |
+      | 5.23 Goods Location - Street and Number    | 1 The Goods Yard |
+      | 5.23 Goods Location - City                 | Oldham           |
+      | 5.23 Goods Location - Country Code         | GB               |
+      | 5.23 Goods Location - Postcode             | OL1 5ER          |
+      | 5.23 Goods Location - Address Type         | Z                |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
@@ -512,11 +515,14 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element | Value |
       | ID      | US    |
     And the submitted XML should include a Consignment with the following GoodsLocation
-      | Element             | Value |
-      | Name                | DVR   |
-      | TypeCode            | B     |
-      | Address/CountryCode | FR    |
-      | Address/TypeCode    | Z     |
+      | Element             | Value            |
+      | Name                | DVR              |
+      | TypeCode            | B                |
+      | Address/Line        | 1 The Goods Yard |
+      | Address/CityName    | Oldham           |
+      | Address/CountryCode | GB               |
+      | Address/PostcodeID  | OL1 5ER          |
+      | Address/TypeCode    | Z                |
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following Origin
       | Element     | Value |
       | CountryCode | MX    |
@@ -577,17 +583,17 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ID                     | 76071111 |
       | IdentificationTypeCode | TSP      |
     And the submitted XML should include a Commodity with the following Classification
-      | Element                | Value    |
-      | ID                     | 10       |
-      | IdentificationTypeCode | TRC      |
+      | Element                | Value |
+      | ID                     | 10    |
+      | IdentificationTypeCode | TRC   |
     And the submitted XML should include a Commodity with the following Classification
-      | Element                | Value    |
-      | ID                     | 1234     |
-      | IdentificationTypeCode | TRA      |
+      | Element                | Value |
+      | ID                     | 1234  |
+      | IdentificationTypeCode | TRA   |
     And the submitted XML should include a Commodity with the following Classification
-      | Element                | Value    |
-      | ID                     | VATZ     |
-      | IdentificationTypeCode | GN       |
+      | Element                | Value |
+      | ID                     | VATZ  |
+      | IdentificationTypeCode | GN    |
     And the submitted XML should include a Declaration with the following data elements
       | Element              | Value |
       | TotalPackageQuantity | 1     |
@@ -614,7 +620,8 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element                     | Value |
       | ModeCode                    | 1     |
       | RegistrationNationalityCode | BR    |
-@wip
+
+  @wip
   Scenario: Section 8 Quota and guarantee fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
