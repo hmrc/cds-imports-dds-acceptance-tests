@@ -621,7 +621,7 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ModeCode                    | 1     |
       | RegistrationNationalityCode | BR    |
 
-  @wip
+
   Scenario: Section 8 Quota and guarantee fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
