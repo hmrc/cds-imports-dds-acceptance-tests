@@ -29,7 +29,7 @@ Feature: Receive notifications from DMS
     And I should see the following errors
     | Data Error: Data Element contains invalid value (CDS10020)Declaration (42A, -, -)GoodsShipment (67A, -, -)GovernmentAgencyGoodsItem (68A, 1, -)AdditionalDocument/LPCOExemptionCode (02A, 2, 360) |
 
-  @wip
+
   Scenario: Receive and display tax liability notification with errors from DMS
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page
@@ -41,7 +41,6 @@ Feature: Receive notifications from DMS
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be TAX_LIABILITY
 
-  @wip
   Scenario: Receive and display insufficient balance notification with errors from DMS
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page
@@ -53,7 +52,6 @@ Feature: Receive notifications from DMS
     Then I should see the heading "Customs Declaration submitted"
     And the declaration status should be INSUFFICIENT_BALANCE_IN_DAN
 
-  @wip
   Scenario: Receive and display insufficient balance reminder notification with errors from DMS
     And I am signed in as a registered user
     When I navigate to the Submit Declaration page
