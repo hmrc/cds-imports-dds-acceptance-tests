@@ -621,7 +621,6 @@ Feature: Submit import declarations to the declarations API via the single page 
       | ModeCode                    | 1     |
       | RegistrationNationalityCode | BR    |
 
-
   Scenario: Section 8 Quota and guarantee fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
@@ -631,25 +630,19 @@ Feature: Submit import declarations to the declarations API via the single page 
       | 8.3 Guarantee Reference - GRN                                     | 1234  |
       | 8.3 Guarantee Reference - Other Guarantee Reference               | 456   |
       | 8.3 Guarantee Reference - Access Code                             | 90    |
-      | 8.3 Guarantee Reference - Amount of import duty and other charges | 2000  |
-      | 8.3 Guarantee Reference - Currency Code                           | GBP   |
-      | 8.3 Guarantee Reference - Customs office of guarantee             | 29    |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
     And the submitted XML should include a Commodity with the following DutyTaxFee
       | Element                     | Value |
-      | QuotaOrderId                | 1     |
+      | QuotaOrderID                | 1     |
     And the submitted XML should include a Declaration with the following ObligationGuarantee
       | Element                     | Value |
-      | AmountAmount                | 2000  |
       | ID                          | 456   |
       | ReferenceID                 | 1234  |
       | SecurityDetailsCode         | 0     |
       | AccessCode                  | 90    |
-      | GuaranteeOffice/ID          | 29    |
-    And the currencyID attribute of node Declaration/ObligationGuarantee/AmountAmount/ should be GBP
 
   Scenario: Section 8 Nature of Transaction & Statistical Value fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
