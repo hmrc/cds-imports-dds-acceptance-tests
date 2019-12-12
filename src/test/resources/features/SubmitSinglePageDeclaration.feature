@@ -625,15 +625,15 @@ Feature: Submit import declarations to the declarations API via the single page 
   Scenario: Section 8 Quota and guarantee fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                       | Value |
-      | Quota order number                               | 1     |
-      | Guarantee type                                   | 0     |
-      | GRN                                              | 1234  |
-      | Other Guarantee Reference                        | 456   |
-      | Access Code                                      | 90    |
-      | Amount of import duty and other charges          | 2000  |
-      | Currency Code                                    | GBP   |
-      | Customs office of guarantee                      | 29    |
+      | Field Name                                                        | Value |
+      | 8.1 Quota order number                                            | 1     |
+      | 8.2 Guarantee type                                                | 0     |
+      | 8.3 Guarantee Reference - GRN                                     | 1234  |
+      | 8.3 Guarantee Reference - Other Guarantee Reference               | 456   |
+      | 8.3 Guarantee Reference - Access Code                             | 90    |
+      | 8.3 Guarantee Reference - Amount of import duty and other charges | 2000  |
+      | 8.3 Guarantee Reference - Currency Code                           | GBP   |
+      | 8.3 Guarantee Reference - Customs office of guarantee             | 29    |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
