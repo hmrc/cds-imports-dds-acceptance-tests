@@ -627,7 +627,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     And I enter the following data
       | Field Name                                                        | Value |
       | 8.1 Quota order number                                            | 1     |
-      | 8.2 Guarantee type                                                | 0     |
+      | 8.2 Guarantee Type                                                | 0     |
       | 8.3 Guarantee Reference - GRN                                     | 1234  |
       | 8.3 Guarantee Reference - Other Guarantee Reference               | 456   |
       | 8.3 Guarantee Reference - Access Code                             | 90    |
