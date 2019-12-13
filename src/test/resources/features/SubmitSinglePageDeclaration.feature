@@ -452,7 +452,7 @@ Feature: Submit import declarations to the declarations API via the single page 
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following InvoiceLine
       | Element          | Value    |
       | ItemChargeAmount | 90500000 |
-    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/Commodity/InvoiceLine/ItemChargeAmount should be GBP
+    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/Commodity/InvoiceLine/ItemChargeAmount for value 90500000 should be GBP
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following DutyTaxFee
       | Element        | Value |
       | DutyRegimeCode | 100   |
@@ -476,13 +476,13 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element                                    | Value |
       | ChargeDeduction/ChargesTypeCode            | AS    |
       | ChargeDeduction/OtherChargeDeductionAmount | 99.32 |
-    And the currencyID attribute of node Declaration/GoodsShipment/CustomsValuation/ChargeDeduction/OtherChargeDeductionAmount should be GBP
+    And the currencyID attribute of node Declaration/GoodsShipment/CustomsValuation/ChargeDeduction/OtherChargeDeductionAmount for value 99.32 should be GBP
     And the submitted XML should include a GovernmentAgencyGoodsItem with the following CustomsValuation
       | Element                                    | Value  |
       | MethodCode                                 | 1      |
       | ChargeDeduction/ChargesTypeCode            | CD     |
       | ChargeDeduction/OtherChargeDeductionAmount | 123.45 |
-    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/CustomsValuation/ChargeDeduction/OtherChargeDeductionAmount should be USD
+    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/CustomsValuation/ChargeDeduction/OtherChargeDeductionAmount for value 123.45 should be USD
     And the submitted XML should include a GoodsShipment with the following Consignment
       | Element            | Value |
       | LoadingLocation/ID | JFK   |
@@ -659,23 +659,73 @@ Feature: Submit import declarations to the declarations API via the single page 
       | Element                | Value |
       | TransactionNatureCode  | 3     |
       | StatisticalValueAmount | 99    |
-    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/StatisticalValueAmount should be MXN
-  @wip
+    And the currencyID attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/StatisticalValueAmount for value 99 should be MXN
+
   Scenario: Section 8.7 Write off value fields are mapped to the correct XML elements
     When I navigate to the Simple Declaration page
     And I enter the following data
-      | Field Name                                     | Value      |
-      | 8.7 Writing Off - Issuing Authority            | ABC        |
-      | 8.7 Writing Off - Date of Validity             | 22/01/2020 |
-      | 8.7 Writing Off - Quantity                     | 1          |
-      | 8.7 Writing Off - Measurement Unit & Qualifier | KGM        |
+      | Field Name                                       | Value      |
+      | 8.7 Writing Off - Issuing Authority 1            | ABC        |
+      | 8.7 Writing Off - Date of Validity 1             |            |
+      | 8.7 Writing Off - Quantity 1                     | 1          |
+      | 8.7 Writing Off - Measurement Unit & Qualifier 1 | KGM        |
+      | 8.7 Writing Off - Issuing Authority 2            | DEF        |
+      | 8.7 Writing Off - Date of Validity 2             |            |
+      | 8.7 Writing Off - Quantity 2                     | 2          |
+      | 8.7 Writing Off - Measurement Unit & Qualifier 2 | AGM        |
+      | 8.7 Writing Off - Issuing Authority 3            | GHI        |
+      | 8.7 Writing Off - Date of Validity 3             |            |
+      | 8.7 Writing Off - Quantity 3                     | 3          |
+      | 8.7 Writing Off - Measurement Unit & Qualifier 3 | BGM        |
+      | 8.7 Writing Off - Issuing Authority 4            | JKL        |
+      | 8.7 Writing Off - Date of Validity 4             |            |
+      | 8.7 Writing Off - Quantity 4                     | 4          |
+      | 8.7 Writing Off - Measurement Unit & Qualifier 4 | CGM        |
+      | 8.7 Writing Off - Issuing Authority 5            | MNO        |
+      | 8.7 Writing Off - Date of Validity 5             |            |
+      | 8.7 Writing Off - Quantity 5                     | 5          |
+      | 8.7 Writing Off - Measurement Unit & Qualifier 5 | DGM        |
+      | 8.7 Writing Off - Issuing Authority 6            | PQR        |
+      | 8.7 Writing Off - Date of Validity 6             |            |
+      | 8.7 Writing Off - Quantity 6                     | 6          |
+      | 8.7 Writing Off - Measurement Unit & Qualifier 6 | EGM        |
     And I click on Submit
     Then I should see submitted page with the following response details for valid data
       | Status |
       | 202    |
-    And the submitted XML should include a GovernmentAgencyGoodsItem with the following AdditionalDocument
+    And the submitted XML should include a AdditionalDocument with the following data elements
       | Element                   | Value            |
       | Submitter/Name            | ABC              |
-      | EffectiveDateTime         | 22/01/2020       |
+#      | EffectiveDateTime         |        |
       | WriteOff/QuantityQuantity | 1                |
-    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity should be KGM
+    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity for value 1 should be KGM
+    And the submitted XML should include a AdditionalDocument with the following data elements
+      | Element                   | Value            |
+      | Submitter/Name            | DEF              |
+#      | EffectiveDateTime         |        |
+      | WriteOff/QuantityQuantity | 2                |
+    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity for value 2 should be AGM
+    And the submitted XML should include a AdditionalDocument with the following data elements
+      | Element                   | Value            |
+      | Submitter/Name            | GHI              |
+#      | EffectiveDateTime         |        |
+      | WriteOff/QuantityQuantity | 3                |
+    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity for value 3 should be BGM
+    And the submitted XML should include a AdditionalDocument with the following data elements
+      | Element                   | Value            |
+      | Submitter/Name            | JKL              |
+#      | EffectiveDateTime         |        |
+      | WriteOff/QuantityQuantity | 4                |
+    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity for value 4 should be CGM
+    And the submitted XML should include a AdditionalDocument with the following data elements
+      | Element                   | Value            |
+      | Submitter/Name            | MNO              |
+#      | EffectiveDateTime         |        |
+      | WriteOff/QuantityQuantity | 5                |
+    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity for value 5 should be DGM
+    And the submitted XML should include a AdditionalDocument with the following data elements
+      | Element                   | Value            |
+      | Submitter/Name            | PQR              |
+#      | EffectiveDateTime         |        |
+      | WriteOff/QuantityQuantity | 6                |
+    And the unitCode attribute of node Declaration/GoodsShipment/GovernmentAgencyGoodsItem/AdditionalDocument/WriteOff/QuantityQuantity for value 6 should be EGM

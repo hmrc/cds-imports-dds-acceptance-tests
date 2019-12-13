@@ -149,11 +149,12 @@ class SubmitDeclarationSteps extends CustomsImportsWebPage with AppendedClues {
       }
     }
 
-    actualKeyValuePairs should contain(expectedKeyValuePairs) withClue(actualXml)
+    actualKeyValuePairs should contain(expectedKeyValuePairs) withClue actualXml
   }
 
-  And("""^the (.*) attribute of node (.*) should be (.*)$""") { (attributeName: String, expectedSubElementName: String, expectedValue: String) =>
-    val element = findElements(lastSubmittedXML(), expectedSubElementName)
+  And("""^the (.*) attribute of node (.*) for value (.*) should be (.*)$""") { (attributeName: String, expectedSubElementName: String, nodeValue: String, expectedValue: String) =>
+    val elements = findElements(lastSubmittedXML(), expectedSubElementName)
+    val element = elements.filter(_.text.toString == nodeValue).toList
     val attrValue = element.head.attribute(attributeName)
     attrValue.head.text should be(expectedValue) withClue s"$attributeName attribute is not present in $expectedSubElementName node"
   }
