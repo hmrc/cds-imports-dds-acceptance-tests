@@ -1,4 +1,4 @@
-@wipTim
+@wip
 Feature: Review all submitted declarations and provide link to add a new declaration
 
   Background:
@@ -9,5 +9,5 @@ Feature: Review all submitted declarations and provide link to add a new declara
   Scenario: User has not yet submitted any declarations
     When I navigate to the Your Import Declarations page
     Then I should see a message telling me that 'No declarations to display.'
-    And I should see a link Make a declaration
+    And I should see a link 'Make a Declaration'
 

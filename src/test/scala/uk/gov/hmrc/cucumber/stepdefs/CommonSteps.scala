@@ -75,12 +75,4 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
   When("""^I wait for (\d+) seconds$""") { seconds: Int =>
     Thread.sleep(seconds*1000)
   }
-
-  And("""^I should see a link '(.*)'$""") { linkText: String =>
-    val actualHref = webDriver.findElement(By.linkText(linkText)).getAttribute("href")
-    val expectedHref = SinglePageDeclarationPage.baseUrl
-    actualHref should be(expectedHref) withClue s"Actual href $actualHref is not equals to expected $expectedHref "
-
-  }
-
 }
