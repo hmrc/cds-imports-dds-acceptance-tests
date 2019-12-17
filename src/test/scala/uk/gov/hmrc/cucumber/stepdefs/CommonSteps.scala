@@ -1,9 +1,10 @@
 package uk.gov.hmrc.cucumber.stepdefs
 
 import cucumber.api.PendingException
+import org.openqa.selenium.By
 import org.scalatest.AppendedClues
 import uk.gov.hmrc.conf.TestConfiguration
-import uk.gov.hmrc.pages._
+import uk.gov.hmrc.pages.{SinglePageDeclarationPage, _}
 import uk.gov.hmrc.utils.DropMongo._
 import uk.gov.hmrc.utils.WSClient
 
@@ -42,6 +43,7 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
       case "Hello World" => HelloWorldPage.goToPage()
       case "Submit Declaration" => SubmitDeclarationPage.goToPage()
       case "Simple Declaration" => SinglePageDeclarationPage.goToPage()
+      case "Your Import Declarations" => YourImportDeclarationsPage.goToPage()
     }
   }
 
@@ -72,6 +74,13 @@ class CommonSteps extends CustomsImportsWebPage with AppendedClues  {
 
   When("""^I wait for (\d+) seconds$""") { seconds: Int =>
     Thread.sleep(seconds*1000)
+  }
+
+  And("""^I should see a link '(.*)'$""") { linkText: String =>
+    val actualHref = webDriver.findElement(By.linkText(linkText)).getAttribute("href")
+    val expectedHref = SinglePageDeclarationPage.baseUrl
+    actualHref should be(expectedHref) withClue s"Actual href $actualHref is not equals to expected $expectedHref "
+
   }
 
 }
